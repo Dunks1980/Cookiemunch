@@ -1,7 +1,7 @@
 {
   "name": "@dunks1980/cookiemunch",
-  "version": "1.0.24",
-  "description": "Cookie plugin",
+  "version": "1.0.25",
+  "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
   "main": "cookiemunch.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
