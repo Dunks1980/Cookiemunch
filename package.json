@@ -1,6 +1,6 @@
 {
   "name": "@dunks1980/cookiemunch",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Cookie plugin",
   "main": "cookiemunch.min.js",
   "scripts": {
