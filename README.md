@@ -1,4 +1,4 @@
-# <img src="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg" width="40"> Cookiemunch
+# <img src="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg?v=2" width="40"> Cookiemunch
 
 Its a simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline. Goto [Cookiemunch](https://cookiemunch.dunks1980.com/) for documentation and to see it in action.
 
