@@ -57,18 +57,7 @@
         };
         cookiemunch(cookiemunch_options);
 
-        function cookiemunch_gtm() {
-            window['ga-disable-G-5WC53Z2SLN'] = false;
-            window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-            gtag('config', 'G-5WC53Z2SLN');
-            message += '<div>Accepted Google tag manager, function fires and 🍪 added!</div>';
-            addmessage();
-        }
+        
 
         var message_el = document.getElementById("message-log");
         var message = '';
@@ -84,8 +73,20 @@
             }, 1000);
         }
 
+        function cookiemunch_gtm() {
+            // window['ga-disable-G-5WC53Z2SLN'] = false;
+            // window.dataLayer = window.dataLayer || [];
+            // function gtag() {
+            //     dataLayer.push(arguments);
+            // }
+            // gtag('js', new Date());
+            // gtag('config', 'G-5WC53Z2SLN');
+            message += '<div>Accepted Google tag manager, function fires and 🍪 added!</div>';
+            addmessage();
+        }
+
         function cookiemunch_gtm_off() {
-            window['ga-disable-G-5WC53Z2SLN'] = true;
+            // window['ga-disable-G-5WC53Z2SLN'] = true;
             message += '<div>Declined Google tag manager, function fires and 🍪 removed!</div>';
             addmessage();
         }
