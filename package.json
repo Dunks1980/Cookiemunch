@@ -1,0 +1,14 @@
+{
+  "name": "@dunks1980/cookiemunch",
+  "version": "1.0.18",
+  "description": "Cookie plugin",
+  "main": "cookiemunch.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm publish --access public"
+  },
+  "author": "Ian Dunkerley",
+  "license": "ISC",
+  "homepage": "https://cookiemunch.dunks1980.com/",
+  "keywords": ["Vue-js", "Vue", "cookies", "plugin"]
+}
