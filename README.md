@@ -11,7 +11,7 @@ npm i @dunks1980/cookiemunch --save
 <br />
 
 Vue.js 3 example:
-```javascript
+```html
 <template>
     <img alt="Vue logo" src="./assets/logo.png" />
     <h1>{{ cookiemunch_message }}</h1>
@@ -75,17 +75,6 @@ Vue.js 3 example:
         },
     };
 </script>
-
-<style>
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-}
-</style>
 ```
 <br />
 <br />
