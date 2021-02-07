@@ -240,16 +240,16 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     }, 100);
   };
 
-  /* SLIDE UP */
+  /* closes panel */
   var slideUp = function (target, duration) {
     toggling_cookiemunch_popup = true;
     if (plugin_settings.hide_icon) {
       //document.getElementById("cookie_munch_element").setAttribute("class", "closed");
-      document.getElementById("cookie_munch_element").setAttribute("style", "transition: 1s ease-in-out; opacity:0;");
+      document.getElementById("cookie_munch_element").setAttribute("style", "transition: 0.3s ease-in-out; opacity:0;");
       window.setTimeout(function () {
         document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
         toggling_cookiemunch_popup = false;
-      }, 1000);
+      }, duration);
     } else {
       document.getElementById("cookie_munch_element").setAttribute("style", "");
       document.getElementById("cookie_munch_element").setAttribute("class", "closed");
@@ -280,7 +280,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     }
   };
 
-  /* SLIDE DOWN */
+  /* opens panel */
   var slideDown = function (target, duration) {
     toggling_cookiemunch_popup = true;
     if (plugin_settings.hide_icon) {
