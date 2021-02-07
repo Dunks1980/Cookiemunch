@@ -6,19 +6,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cookiemunch</title>
-  <link rel="stylesheet" href="/cookiemunch.css">
+  <link rel="stylesheet" href="/cookiemunch_flat_dark.css">
   <script src="/cookiemunch.js"></script>
+  <style>
+  body{
+    background: #000; 
+    color:#fff;
+    } .code-text { 
+    font-family: Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace; 
+    }
+  </style>
 </head>
 
 <body>
-  <pre class="language-html" id="message-log"
+  <pre class="code-text" id="message-log"
     style="margin-bottom: 10px !important;">Change 🍪 settings to update this view!</pre>
   <script>
     var cookiemunch_options = {
       settings: {
-        first_visit_checked: true,
-        cookie_title: 'Cookiemunch cookies',
-        start_dropdown_closed: true
+        reload: false,
+        hide_icon: false,
+        cookies_to_exclude: [],
+        keep_all_cookies: false,
+        first_visit_checked: false,
+        start_dropdown_closed: false,
+        //cookie_image: '/cookiemunch.svg',
+        cookie_image: '/cookiemunch_flat_dark.svg',
+        //cookie_image: '/cookiemunch_flat_light.svg',
+        cookie_title: 'Cookies settings',
+        cookie_optional: 'Optional',
+        cookie_required: 'Required',
+        cookie_accept_label: 'Allow Cookies:',
+        cookie_required_label: 'These Cookies are required in order for the site to function.',
+        cookie_button_none: 'None',
+        cookie_button_required: 'Required',
+        cookie_button_select: 'Select',
+        cookie_button_selected: 'Selected',
+        cookie_button_all: 'All',
+        cookie_button_no: 'No',
+        cookie_button_yes: 'Yes',
+        cookie_button_agree: 'Close'
       },
       cookies: [{
           id: "gtm",
