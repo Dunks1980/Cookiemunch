@@ -1,4 +1,4 @@
-var cookiemunch_function = function (passed_opts) {
+var cookiemunch_function = function (passed_opts, block_functions) {
 
   var cookies_object;
   var required_cookies;
@@ -283,6 +283,7 @@ var cookiemunch_function = function (passed_opts) {
   var slideDown = function (target, duration) {
     toggling_cookiemunch_popup = true;
     if (plugin_settings.hide_icon) {
+      document.getElementById("cookie_munch_element").setAttribute("style", "transition: 1s ease-in-out; opacity:1;");
       document.getElementById("cookie_munch_element").setAttribute("class", "open");
       if (checkCookie('cookiemunch_' + 'option_selected')) {
         document.querySelector(".close_panel").setAttribute("style", "display: block;");
@@ -566,12 +567,14 @@ var cookiemunch_function = function (passed_opts) {
       if (plugin_settings.hide_icon) {
         document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
       }
-      for (i = 0; i < cookies_object.length; i++) {
-        check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
-        if (checkCookie(check_this_cookie)) {
-          cookies_object[i].accepted_function();
-        } else {
-          cookies_object[i].declined_function();
+      if (!block_functions) {
+        for (i = 0; i < cookies_object.length; i++) {
+          check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
+          if (checkCookie(check_this_cookie)) {
+            cookies_object[i].accepted_function();
+          } else {
+            cookies_object[i].declined_function();
+          }
         }
       }
     } else {
