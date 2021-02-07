@@ -19,8 +19,10 @@ Vue.js 3 example:
     
 <script>
 import { cookiemunch } from "@dunks1980/cookiemunch";
-import svgimage from "@dunks1980/cookiemunch/cookiemunch.svg";
 import "@dunks1980/cookiemunch/cookiemunch.min.css";
+import svgimage from "@dunks1980/cookiemunch/cookiemunch.svg";
+//import svgimage from "@dunks1980/cookiemunch/cookiemunch_flat_light.svg";
+//import svgimage from "@dunks1980/cookiemunch/cookiemunch_flat_dark.svg";
 
 export default {
   name: "App",
