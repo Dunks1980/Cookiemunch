@@ -99,7 +99,7 @@ export default {
 
 Or can be used without package manager: 
 ```html
-<script defer src="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.js"></script>
+<script src="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.js"></script>
 
 <!-- Default theme --> 
 <link rel="stylesheet" href="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.css">
