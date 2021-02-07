@@ -251,6 +251,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
         toggling_cookiemunch_popup = false;
       }, 1000);
     } else {
+      document.getElementById("cookie_munch_element").setAttribute("style", "");
       document.getElementById("cookie_munch_element").setAttribute("class", "closed");
       target.style.transitionProperty = 'height, margin, padding';
       target.style.transitionDuration = duration + 'ms';
@@ -294,42 +295,43 @@ var cookiemunch_function = function (passed_opts, block_functions) {
         document.getElementById("cookie_munch_element").setAttribute("class", "open-fully");
         toggling_cookiemunch_popup = false;
       }, duration);
-      return false;
-    }
-    document.getElementById("cookie_munch_element").setAttribute("class", "open");
-    target.style.removeProperty('display');
-    var display = window.getComputedStyle(target).display;
-    if (display === 'none') display = 'block';
-    target.style.display = display;
-    var height = target.offsetHeight;
-    target.style.overflow = 'hidden';
-    target.style.height = 0;
-    target.style.paddingTop = 0;
-    target.style.paddingBottom = 0;
-    target.style.marginTop = 0;
-    target.style.marginBottom = 0;
-    target.offsetHeight = target.offsetHeight;
-    target.style.boxSizing = 'border-box';
-    target.style.transitionProperty = "height, margin, padding";
-    target.style.transitionDuration = duration + 'ms';
-    target.style.height = height + 'px';
-    target.style.removeProperty('padding-top');
-    target.style.removeProperty('padding-bottom');
-    target.style.removeProperty('margin-top');
-    target.style.removeProperty('margin-bottom');
-    if (checkCookie('cookiemunch_' + 'option_selected')) {
-      document.querySelector(".close_panel").setAttribute("style", "display: block;");
     } else {
-      document.querySelector(".close_panel").setAttribute("style", "display: none;");
+      document.getElementById("cookie_munch_element").setAttribute("style", "");
+      document.getElementById("cookie_munch_element").setAttribute("class", "open");
+      target.style.removeProperty('display');
+      var display = window.getComputedStyle(target).display;
+      if (display === 'none') display = 'block';
+      target.style.display = display;
+      var height = target.offsetHeight;
+      target.style.overflow = 'hidden';
+      target.style.height = 0;
+      target.style.paddingTop = 0;
+      target.style.paddingBottom = 0;
+      target.style.marginTop = 0;
+      target.style.marginBottom = 0;
+      target.offsetHeight = target.offsetHeight;
+      target.style.boxSizing = 'border-box';
+      target.style.transitionProperty = "height, margin, padding";
+      target.style.transitionDuration = duration + 'ms';
+      target.style.height = height + 'px';
+      target.style.removeProperty('padding-top');
+      target.style.removeProperty('padding-bottom');
+      target.style.removeProperty('margin-top');
+      target.style.removeProperty('margin-bottom');
+      if (checkCookie('cookiemunch_' + 'option_selected')) {
+        document.querySelector(".close_panel").setAttribute("style", "display: block;");
+      } else {
+        document.querySelector(".close_panel").setAttribute("style", "display: none;");
+      }
+      window.setTimeout(function () {
+        target.style.removeProperty('height');
+        target.style.removeProperty('overflow');
+        target.style.removeProperty('transition-duration');
+        target.style.removeProperty('transition-property');
+        document.getElementById("cookie_munch_element").setAttribute("class", "open-fully");
+        toggling_cookiemunch_popup = false;
+      }, duration);
     }
-    window.setTimeout(function () {
-      target.style.removeProperty('height');
-      target.style.removeProperty('overflow');
-      target.style.removeProperty('transition-duration');
-      target.style.removeProperty('transition-property');
-      document.getElementById("cookie_munch_element").setAttribute("class", "open-fully");
-      toggling_cookiemunch_popup = false;
-    }, duration);
   };
 
   // options slideup
