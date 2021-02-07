@@ -290,7 +290,7 @@
 }
 
 input:checked+.cookiemunch_slider {
-  background-color: rgb(31, 141, 73);
+  background-color: rgb(39, 39, 39);
 }
 
 input:focus+.cookiemunch_slider {
