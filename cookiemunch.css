@@ -80,7 +80,7 @@
   left: 50%;
   bottom: 50%;
   transform: translate(-50%, 50%);
-  z-index: 99999;
+  z-index: 99999999999999999;
   background: #fff;
   color: #555;
   border-radius: 4px;
