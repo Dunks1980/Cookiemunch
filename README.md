@@ -19,10 +19,17 @@ Vue.js 3 example:
     
 <script>
 import { cookiemunch } from "@dunks1980/cookiemunch";
+// Default theme:
 import "@dunks1980/cookiemunch/cookiemunch.min.css";
 import svgimage from "@dunks1980/cookiemunch/cookiemunch.svg";
-//import svgimage from "@dunks1980/cookiemunch/cookiemunch_flat_light.svg";
-//import svgimage from "@dunks1980/cookiemunch/cookiemunch_flat_dark.svg";
+/*
+Light theme:
+@dunks1980/cookiemunch/cookiemunch_flat_light.min.css
+@dunks1980/cookiemunch/cookiemunch_flat_light.svg
+Dark theme:
+@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css
+@dunks1980/cookiemunch/cookiemunch_flat_dark.svg
+*/
 
 export default {
   name: "App",
@@ -92,8 +99,16 @@ export default {
 
 Or can be used without package manager: 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.css">
 <script defer src="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.js"></script>
+
+<!-- Default theme --> 
+<link rel="stylesheet" href="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.css">
+
+<!-- Light theme --> 
+<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_light.min.css --> 
+
+<!-- Dark theme --> 
+<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css --> 
 ```
 example:
 ```javascript
@@ -114,7 +129,7 @@ var options = {
   ]
 };
 
-window.cookiemunch(options);
+cookiemunch(options);
 
 function add_example_script() {
   console.log("add_example_script fired!!!");
