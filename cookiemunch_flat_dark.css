@@ -61,7 +61,7 @@
   box-sizing: border-box;
   display: block;
   transition: 300ms ease-in-out;
-  box-shadow: 0 0px 0px 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0px 0px 2px rgba(255, 255, 255, 0.1);
 }
 
 #cookie_munch_element.closed {
@@ -294,13 +294,12 @@
 }
 
 input:checked+.cookiemunch_slider {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 0px rgb(255, 255, 255);
+  background-color: rgb(202, 202, 202);
 }
 
-input:hover+.cookiemunch_slider,
-input:focus+.cookiemunch_slider {
-  box-shadow: 0 0 0px 1px #555;
+input:hover+.cookiemunch_slider{
+  background-color: rgb(77, 77, 77);
+  /* box-shadow: 0 0 0px 1px #555; */
 }
 
 input:checked+.cookiemunch_slider:before {
