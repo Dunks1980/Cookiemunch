@@ -244,38 +244,39 @@ var cookiemunch_function = function (passed_opts) {
   var slideUp = function (target, duration) {
     toggling_cookiemunch_popup = true;
     if (plugin_settings.hide_icon) {
-      document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
+      //document.getElementById("cookie_munch_element").setAttribute("class", "closed");
+      document.getElementById("cookie_munch_element").setAttribute("style", "transition: 1s ease-in-out; opacity:0;");
       window.setTimeout(function () {
         document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
         toggling_cookiemunch_popup = false;
+      }, 1000);
+    } else {
+      document.getElementById("cookie_munch_element").setAttribute("class", "closed");
+      target.style.transitionProperty = 'height, margin, padding';
+      target.style.transitionDuration = duration + 'ms';
+      target.style.boxSizing = 'border-box';
+      target.style.height = target.offsetHeight + 'px';
+      target.offsetHeight = target.offsetHeight;
+      target.style.overflow = 'hidden';
+      target.style.height = 0;
+      target.style.paddingTop = 0;
+      target.style.paddingBottom = 0;
+      target.style.marginTop = 0;
+      target.style.marginBottom = 0;
+      window.setTimeout(function () {
+        target.style.display = 'none';
+        target.style.removeProperty('height');
+        target.style.removeProperty('padding-top');
+        target.style.removeProperty('padding-bottom');
+        target.style.removeProperty('margin-top');
+        target.style.removeProperty('margin-bottom');
+        target.style.removeProperty('overflow');
+        target.style.removeProperty('transition-duration');
+        target.style.removeProperty('transition-property');
+        document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
+        toggling_cookiemunch_popup = false;
       }, duration);
-      return false;
     }
-    document.getElementById("cookie_munch_element").setAttribute("class", "closed");
-    target.style.transitionProperty = 'height, margin, padding';
-    target.style.transitionDuration = duration + 'ms';
-    target.style.boxSizing = 'border-box';
-    target.style.height = target.offsetHeight + 'px';
-    target.offsetHeight = target.offsetHeight;
-    target.style.overflow = 'hidden';
-    target.style.height = 0;
-    target.style.paddingTop = 0;
-    target.style.paddingBottom = 0;
-    target.style.marginTop = 0;
-    target.style.marginBottom = 0;
-    window.setTimeout(function () {
-      target.style.display = 'none';
-      target.style.removeProperty('height');
-      target.style.removeProperty('padding-top');
-      target.style.removeProperty('padding-bottom');
-      target.style.removeProperty('margin-top');
-      target.style.removeProperty('margin-bottom');
-      target.style.removeProperty('overflow');
-      target.style.removeProperty('transition-duration');
-      target.style.removeProperty('transition-property');
-      document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
-      toggling_cookiemunch_popup = false;
-    }, duration);
   };
 
   /* SLIDE DOWN */
@@ -521,6 +522,7 @@ var cookiemunch_function = function (passed_opts) {
     var cookie_svg = '<img width="100%" height="100%" alt="cookiemunch logo" src="' + plugin_settings.cookie_image + '">';
     var cookie_munch_el = document.createElement('div');
     cookie_munch_el.setAttribute("id", "cookie_munch_element");
+    cookie_munch_el.setAttribute("style", "transition: 0.3s ease-in-out; opacity: 0;");
     if (plugin_settings.hide_icon) {
       cookie_munch_el.setAttribute("data-class", "cookiemunch_hide_icon");
     }
@@ -533,10 +535,14 @@ var cookiemunch_function = function (passed_opts) {
       '<span onclick="cookiemunch_accept_selected()" style="display: none;" class="close_panel"></span>';
     cookie_munch_el.appendChild(create_html_hot_cookie_options);
     document.body.appendChild(cookie_munch_el);
+    
     toggle_view_el = document.querySelector(".cookiemunch_toggle_view");
     document.querySelector('.cookie_munch_title_wrap').addEventListener("click", function () {
       slideDown(toggle_view_el, duration);
     });
+    setTimeout(function(){
+      cookie_munch_el.setAttribute("style", "transition: 0.3s ease-in-out; opacity:1;");
+    },200);
   }
 
   // set checked if cookies
@@ -557,7 +563,9 @@ var cookiemunch_function = function (passed_opts) {
     var i;
     var check_this_cookie;
     if (checkCookie('cookiemunch_option_selected')) {
-      slideUp(toggle_view_el, 0);
+      if (plugin_settings.hide_icon) {
+        document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
+      }
       for (i = 0; i < cookies_object.length; i++) {
         check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
         if (checkCookie(check_this_cookie)) {
