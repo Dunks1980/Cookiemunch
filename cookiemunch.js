@@ -538,14 +538,17 @@ var cookiemunch_function = function (passed_opts, block_functions) {
       '<span onclick="cookiemunch_accept_selected()" style="display: none;" class="close_panel"></span>';
     cookie_munch_el.appendChild(create_html_hot_cookie_options);
     document.body.appendChild(cookie_munch_el);
-    
+
     toggle_view_el = document.querySelector(".cookiemunch_toggle_view");
     document.querySelector('.cookie_munch_title_wrap').addEventListener("click", function () {
       slideDown(toggle_view_el, duration);
     });
-    setTimeout(function(){
+    if (checkCookie('cookiemunch_option_selected')) {
+      slideUp(toggle_view_el, 0);
+    }
+    setTimeout(function () {
       cookie_munch_el.setAttribute("style", "transition: 0.3s ease-in-out; opacity:1;");
-    },200);
+    }, 200);
   }
 
   // set checked if cookies
