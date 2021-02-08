@@ -476,7 +476,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
         '<span>' + plugin_settings.cookie_required + '</span><span class="cookiemunch_wrapper_chev"></span></div>';
       html += '<div class="cookiemunch_wrapper cookiemunch_wrapper_required" style="display: none;">';
     } else {
-      html += '<div class="cookiemunch_wrapper cookiemunch_wrapper_required">';
+      html += '<div class="cookiemunch_wrapper cookiemunch_wrapper_required" data-fade-switch="true">';
     }
     if (required_cookies.length) {
       for (var j = 0; j < required_cookies.length; j++) {
