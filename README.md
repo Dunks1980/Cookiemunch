@@ -23,10 +23,10 @@ import { cookiemunch } from "@dunks1980/cookiemunch";
 import "@dunks1980/cookiemunch/cookiemunch.min.css";
 import svgimage from "@dunks1980/cookiemunch/cookiemunch.svg";
 /*
-Light theme:
+Light theme: (replace imports above)
 @dunks1980/cookiemunch/cookiemunch_flat_light.min.css
 @dunks1980/cookiemunch/cookiemunch_flat_light.svg
-Dark theme:
+Dark theme: (replace imports above)
 @dunks1980/cookiemunch/cookiemunch_flat_dark.min.css
 @dunks1980/cookiemunch/cookiemunch_flat_dark.svg
 */
@@ -104,10 +104,10 @@ Or can be used without package manager:
 <!-- Default theme --> 
 <link rel="stylesheet" href="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.css">
 
-<!-- Light theme --> 
+<!-- Light theme (replace href above) --> 
 <!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_light.min.css --> 
 
-<!-- Dark theme --> 
+<!-- Dark theme (replace href above) --> 
 <!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css --> 
 ```
 example:

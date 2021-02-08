@@ -336,6 +336,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
 
   // options slideup
   function slideUp_options(target, duration) {
+    target.setAttribute('data-fade-switch', false);
     target.style.transitionProperty = 'height, margin, padding';
     target.style.transitionDuration = duration + 'ms';
     target.style.boxSizing = 'border-box';
@@ -383,6 +384,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     target.style.removeProperty('margin-top');
     target.style.removeProperty('margin-bottom');
     window.setTimeout(function () {
+      target.setAttribute('data-fade-switch', true);
       target.style.removeProperty('height');
       target.style.removeProperty('overflow');
       target.style.removeProperty('transition-duration');
