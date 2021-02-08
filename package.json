@@ -1,6 +1,6 @@
 {
   "name": "@dunks1980/cookiemunch",
-  "version": "1.0.49",
+  "version": "1.0.50",
   "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
   "main": "cookiemunch.min.js",
   "scripts": {
@@ -13,5 +13,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Dunks1980/Cookiemunch"
+  },
+  "bugs": {
+    "url": "https://github.com/Dunks1980/Cookiemunch/issues"
   }
 }
