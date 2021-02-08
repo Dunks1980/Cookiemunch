@@ -6,50 +6,50 @@
 }
 
 #cookiemunch_decline {
-  background-color: #0d0d0d;
+  background-color: #1c1c1c;
   color: #fff;
-  border: 1px solid #262626;
+  border: 1px solid #343434;
 }
 
 #cookiemunch_decline:hover,
 #cookiemunch_decline:focus {
-  background-color: #191919;
+  background-color: #272727;
   color: #fff;
 }
 
 #cookiemunch_accept_select {
-  background-color: #0d0d0d;
+  background-color: #1c1c1c;
   color: #fff;
-  border: 1px solid #262626;
+  border: 1px solid #343434;
 }
 
 #cookiemunch_accept_select:hover,
 #cookiemunch_accept_select:focus {
-  background-color: #191919;
+  background-color: #272727;
   color: #fff;
 }
 
 #cookiemunch_accept_selected {
-  background-color: #0d0d0d;
+  background-color: #1c1c1c;
   color: #fff;
-  border: 1px solid #262626;
+  border: 1px solid #343434;
 }
 
 #cookiemunch_accept_selected:hover,
 #cookiemunch_accept_selected:focus {
-  background-color: #191919;
+  background-color: #272727;
   color: #fff;
 }
 
 #cookiemunch_accept_all {
-  background-color: #0d0d0d;
+  background-color: #1c1c1c;
   color: #fff;
-  border: 1px solid #262626;
+  border: 1px solid #343434;
 }
 
 #cookiemunch_accept_all:hover,
 #cookiemunch_accept_all:focus {
-  background-color: #191919;
+  background-color: #272727;
   color: #fff;
 }
 
@@ -91,7 +91,7 @@
   bottom: 50%;
   transform: translate(-50%, 50%);
   z-index: 100000000000000020;
-  background: #000;
+  background: #101010;
   color: #fff;
   border-radius: 4px;
   padding: 10px;
@@ -268,10 +268,10 @@
 
 .cookiemunch_container {
   margin: 0px 0 10px;
-  border: 1px solid #262626;
+  border: 1px solid #343434;
   border-radius: 4px;
   padding: 10px;
-  background-color: #0d0d0d;
+  background-color: #1c1c1c;
 }
 
 .cookiemunch_container p {
@@ -326,7 +326,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #404040;
+  background-color: #4c4c4c;
   transition: 0.3s;
 }
 
@@ -337,12 +337,12 @@
   width: 16px;
   left: 4px;
   bottom: 4px;
-  background-color: black;
+  background-color: #101010;
   transition: 0.3s;
 }
 
 input:checked + .cookiemunch_slider {
-  background-color: #cccccc;
+  background-color: #cfcfcf;
 }
 
 input:focus + .cookiemunch_slider {
@@ -547,7 +547,7 @@ input:checked + .cookiemunch_slider:before {
   justify-content: space-between;
   padding: 10px 0;
   cursor: pointer;
-  border-bottom: 1px solid #404040;
+  border-bottom: 1px solid #4c4c4c;
   margin: 0 0 10px;
   font-weight: bold;
 }
@@ -585,19 +585,19 @@ input:checked + .cookiemunch_slider:before {
   box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  background-color: #333333;
+  background-color: #404040;
 }
 
 .cookiemunch_wrapper::-webkit-scrollbar {
   width: 6px;
-  background-color: #000;
+  background-color: #101010;
 }
 
 .cookiemunch_wrapper::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
-  background-color: #b3b3b3;
+  background-color: #b7b7b7;
 }
 
 /* > *//*# sourceMappingURL=cookiemunch_flat_dark.css.map */
