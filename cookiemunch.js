@@ -442,7 +442,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
         '<span>' + plugin_settings.cookie_optional + '</span><span class="cookiemunch_wrapper_chev"></span></div>';
       html += '<div class="cookiemunch_wrapper cookiemunch_wrapper_optional" style="display: none;">';
     } else {
-      html += '<div class="cookiemunch_wrapper cookiemunch_wrapper_optional">';
+      html += '<div class="cookiemunch_wrapper cookiemunch_wrapper_optional" data-fade-switch="true">';
     }
     if (cookies_object.length > 1) {
       for (var i = 0; i < cookies_object.length; i++) {
