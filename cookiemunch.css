@@ -98,7 +98,7 @@
   box-sizing: border-box;
   display: block;
   transition: 300ms ease-in-out;
-  box-shadow: 0 0px 0px 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.4);
 }
 
 #cookie_munch_element.closed {
