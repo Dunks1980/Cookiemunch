@@ -1,2 +1,4 @@
 node_modules/
 .vscode/
+*.min.css
+*.min.js
