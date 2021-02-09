@@ -3,3 +3,4 @@ node_modules/
 sass/
 index.html
 .gitignore
+cookiemunch.js
