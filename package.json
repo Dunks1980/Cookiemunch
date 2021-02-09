@@ -1,11 +1,8 @@
 {
   "name": "@dunks1980/cookiemunch",
-  "version": "1.0.56",
+  "version": "1.0.57",
   "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
   "main": "cookiemunch.min.js",
-  "scripts": {
-    "deploy": "npm publish --access public"
-  },
   "author": "Ian Dunkerley",
   "license": "MIT",
   "homepage": "https://cookiemunch.dunks1980.com/",

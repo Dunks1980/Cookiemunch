@@ -19,17 +19,12 @@ Vue.js 3 example:
     
 <script>
 import { cookiemunch } from "@dunks1980/cookiemunch";
-// Default theme:
+import svgimage from "@dunks1980/cookiemunch/cookiemunch.svg"; // optional
 import "@dunks1980/cookiemunch/cookiemunch.min.css";
-import svgimage from "@dunks1980/cookiemunch/cookiemunch.svg";
-/*
-Light theme: (replace imports above)
-@dunks1980/cookiemunch/cookiemunch_flat_light.min.css
-@dunks1980/cookiemunch/cookiemunch_flat_light.svg
-Dark theme: (replace imports above)
-@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css
-@dunks1980/cookiemunch/cookiemunch_flat_dark.svg
-*/
+
+// Light & Dark themes: (replace css import)
+// @dunks1980/cookiemunch/cookiemunch_flat_light.min.css
+// @dunks1980/cookiemunch/cookiemunch_flat_dark.min.css
 
 export default {
   name: "App",
@@ -100,15 +95,11 @@ export default {
 Or can be used without package manager: 
 ```html
 <script src="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.js"></script>
-
-<!-- Default theme --> 
 <link rel="stylesheet" href="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.css">
 
-<!-- Light theme (replace href above) --> 
-<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_light.min.css --> 
-
-<!-- Dark theme (replace href above) --> 
-<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css --> 
+<!-- Light & Darks themes (replace href above) -->
+<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_light.min.css -->
+<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css -->
 ```
 example:
 ```javascript
