@@ -9,14 +9,13 @@
   <title>Cookiemunch</title>
   <!-- <link rel="stylesheet" href="/cookiemunch.min.css"> -->
   <!-- <link rel="stylesheet" href="/cookiemunch_flat_light.min.css"> -->
-  <link rel="stylesheet" href="/cookiemunch_flat_dark.min.css">
+  <link id="theme-link" rel="stylesheet" href="/cookiemunch_flat_dark.min.css">
   <script src="/cookiemunch.js"></script>
   <style>
     body {
       background: #000;
       color: #fff;
     }
-
     .code-text {
       font-size: 14px;
       font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace;
@@ -25,12 +24,30 @@
 </head>
 
 <body>
+  <button class="example-button" onclick="cookiemunch_toggle_popup();">Toggle popup</button>
+  <button class="example-button" onclick="cookiemunch_remove_all_cookies();">Remove all cookies</button>
+  <button class="example-button" onclick="changeTheme();">Change theme</button>
   <pre class="code-text" id="message-log"
-    style="margin-bottom: 10px !important;">Change 🍪 settings to update this view!</pre>
-  <button class="example-button" onclick="cookiemunch_toggle_popup();">Toggle popup</button>
-  <button class="example-button" onclick="cookiemunch_toggle_popup();">Toggle popup</button>
-  <button class="example-button" onclick="cookiemunch_toggle_popup();">Toggle popup</button>
+  style="margin-bottom: 10px !important;">Change 🍪 settings to update this view!</pre>
+
   <script>
+    var themelink;
+    var dark_style = 'background: #101010; color: #fff;';
+    var light_style = 'background: #fff; color: #000;';
+    function changeTheme() {
+      themelink = document.getElementById('theme-link');
+      if (themelink.getAttribute('href') === '/cookiemunch.min.css') {
+        themelink.href = '/cookiemunch_flat_light.min.css';
+        document.body.style = light_style;
+      } else if (themelink.getAttribute('href') === '/cookiemunch_flat_light.min.css') {
+        themelink.href = '/cookiemunch_flat_dark.min.css';
+        document.body.style = dark_style;
+      } else {
+        themelink.href = '/cookiemunch.min.css';
+        document.body.style = light_style;
+      }
+    }
+
     var cookiemunch_options = {
       settings: {
         reload: false,
