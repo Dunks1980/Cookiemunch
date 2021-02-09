@@ -54,7 +54,7 @@
         hide_icon: false,
         cookies_to_exclude: [],
         keep_all_cookies: false,
-        first_visit_checked: false,
+        first_visit_checked: true,
         start_dropdown_closed: false,
         //cookie_image: '/cookiemunch.svg',
         //cookie_image: '/cookiemunch_flat_light.svg',
@@ -156,14 +156,16 @@
     var message = '';
 
     function addmessage() {
-      message_el.innerHTML = message;
-      message_el.classList.add("fade");
+      setTimeout(function () {
+        message_el.innerHTML = '';
+      }, 0);
+      setTimeout(function () {
+        message_el.innerHTML = message;
+      }, 500);
       setTimeout(function () {
         message = '';
-      }, 200);
-      setTimeout(function () {
-        message_el.classList.remove("fade");
       }, 1000);
+
     }
 
     function cookiemunch_gtm() {

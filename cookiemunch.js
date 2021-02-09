@@ -5,6 +5,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
   var plugin_settings;
   var toggle_view_el;
   var duration = 300;
+  var state_map = [];
 
   function cookiemunch_set_settings() {
     if (passed_opts.settings) {
@@ -147,43 +148,27 @@ var cookiemunch_function = function (passed_opts, block_functions) {
   };
 
   window.cookiemunch_decline = function () {
-    if (!document.getElementById("cookie_munch_element")) {
-      return false;
+    if (!document.getElementById("cookie_munch_element")) return false;
+    for (var i = 0; i < cookies_object.length; i++) {
+      var check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
+      document.getElementById(check_this_cookie).checked = false;
     }
-    remove_all_cookies();
-    slideUp(toggle_view_el, duration);
-    cookie_value_selected();
-    if (plugin_settings.reload) {
-      setTimeout(function () {
-        location.reload();
-      }, Number(duration + 100));
-    }
+    cookiemunch_accept_selected();
   };
 
   window.cookiemunch_accept_all = function () {
-    if (!document.getElementById("cookie_munch_element")) {
-      return false;
-    }
-    deleteAllCookies();
+    if (!document.getElementById("cookie_munch_element")) return false;
     for (var i = 0; i < cookies_object.length; i++) {
       var check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
       document.getElementById(check_this_cookie).checked = true;
-      setCookie(check_this_cookie, true, 365);
-      if (!plugin_settings.reload) {
-        cookies_object[i].accepted_function();
-      }
     }
-    slideUp(toggle_view_el, duration);
-    cookie_value_selected();
-    if (plugin_settings.reload) {
-      setTimeout(function () {
-        location.reload();
-      }, Number(duration + 100));
-    }
+    cookiemunch_accept_selected();
   };
 
   window.cookiemunch_accept_selected = function () {
-    if (!document.getElementById("cookie_munch_element")) {
+    if (!document.getElementById("cookie_munch_element")) return false;
+    if (state_map_match() && checkCookie('cookiemunch_option_selected')) {
+      slideUp(toggle_view_el, duration);
       return false;
     }
     deleteAllCookies();
@@ -210,6 +195,29 @@ var cookiemunch_function = function (passed_opts, block_functions) {
       }, Number(duration + 100));
     }
   };
+
+  function state_map_record() {
+    state_map = [];
+    [].forEach.call(cookies_object, function (item) {
+      var is_checked = document.getElementById('cookiemunch_' + item.id).checked;
+      state_map.push(is_checked);
+    });
+    console.log(state_map);
+  }
+
+  function state_map_match() {
+    match_map = [];
+    [].forEach.call(cookies_object, function (item) {
+      var is_checked = document.getElementById('cookiemunch_' + item.id).checked;
+      match_map.push(is_checked);
+    });
+    for (var i = 0; i < match_map.length; i++) {
+      if (match_map.length !== state_map.length) return false;
+      if (match_map[i] !== state_map[i]) return false;
+    }
+    return true;
+  }
+
 
   /* TOOGLE */
   var toggling_cookiemunch_popup;
@@ -243,6 +251,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
   /* closes panel */
   var slideUp = function (target, duration) {
     toggling_cookiemunch_popup = true;
+
     if (plugin_settings.hide_icon) {
       //document.getElementById("cookie_munch_element").setAttribute("class", "closed");
       document.getElementById("cookie_munch_element").setAttribute("style", "transition: 0.3s ease-in-out; opacity:0;");
@@ -283,6 +292,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
   /* opens panel */
   var slideDown = function (target, duration) {
     toggling_cookiemunch_popup = true;
+    state_map_record();
     if (plugin_settings.hide_icon) {
       document.getElementById("cookie_munch_element").setAttribute("style", "transition: 1s ease-in-out; opacity:1;");
       document.getElementById("cookie_munch_element").setAttribute("class", "open");
