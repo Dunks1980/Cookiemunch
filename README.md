@@ -1,9 +1,11 @@
 # <img src="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg?v=2" width="40"> Cookiemunch
 
 Its a simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline. Go to [Cookiemunch](https://cookiemunch.dunks1980.com/) for documentation and demos.
-
 <br />
 
+If you wish to support this project please [buy me a coffee.](https://www.buymeacoffee.com/dunks1980)
+<br />
+<br />
 ## How do I install it?
 ```javascript
 npm i @dunks1980/cookiemunch --save
@@ -42,10 +44,8 @@ export default {
     let vm = this;
 
     this.cookiemunch_options.settings = {
-      first_visit_checked: true,
       cookie_title: "Cookiemunch cookies",
       cookie_image: svgimage,
-      start_dropdown_closed: true,
     };
 
     this.cookiemunch_options.cookies = [
