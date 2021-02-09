@@ -202,7 +202,6 @@ var cookiemunch_function = function (passed_opts, block_functions) {
       var is_checked = document.getElementById('cookiemunch_' + item.id).checked;
       state_map.push(is_checked);
     });
-    console.log(state_map);
   }
 
   function state_map_match() {
@@ -626,7 +625,6 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     }
   };
 
-
   function startup() {
     if (!passed_opts) {
       console.log("No cookiemunch object found.");
@@ -643,9 +641,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
       cookiemunch_load_plugin();
     }, 0);
   }
-
   startup();
-
 };
 
 if (typeof exports != "undefined") {
