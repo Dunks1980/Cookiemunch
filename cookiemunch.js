@@ -1,3 +1,4 @@
+/*eslint no-self-assign: ["error", {"props": false}]*/
 var cookiemunch_function = function (passed_opts, block_functions) {
 
   var cookies_object;
@@ -265,7 +266,8 @@ var cookiemunch_function = function (passed_opts, block_functions) {
       target.style.transitionDuration = duration + 'ms';
       target.style.boxSizing = 'border-box';
       target.style.height = target.offsetHeight + 'px';
-      target.offsetHeight = target.offsetHeight;
+      var prevOffSetHeight = target.offsetHeight;
+      target.offsetHeight = prevOffSetHeight;
       target.style.overflow = 'hidden';
       target.style.height = 0;
       target.style.paddingTop = 0;
@@ -318,7 +320,8 @@ var cookiemunch_function = function (passed_opts, block_functions) {
       target.style.paddingBottom = 0;
       target.style.marginTop = 0;
       target.style.marginBottom = 0;
-      target.offsetHeight = target.offsetHeight;
+      var prevOffSetHeight = target.offsetHeight;
+      target.offsetHeight = prevOffSetHeight;
       target.style.boxSizing = 'border-box';
       target.style.transitionProperty = "height, margin, padding";
       target.style.transitionDuration = duration + 'ms';
@@ -350,7 +353,8 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     target.style.transitionDuration = duration + 'ms';
     target.style.boxSizing = 'border-box';
     target.style.height = target.offsetHeight + 'px';
-    target.offsetHeight = target.offsetHeight;
+    var prevOffSetHeight = target.offsetHeight;
+    target.offsetHeight = prevOffSetHeight;
     target.style.overflow = 'hidden';
     target.style.height = 0;
     target.style.paddingTop = 0;
@@ -383,7 +387,8 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     target.style.paddingBottom = 0;
     target.style.marginTop = 0;
     target.style.marginBottom = 0;
-    target.offsetHeight = target.offsetHeight;
+    var prevOffSetHeight = target.offsetHeight;
+    target.offsetHeight = prevOffSetHeight;
     target.style.boxSizing = 'border-box';
     target.style.transitionProperty = "height, margin, padding";
     target.style.transitionDuration = duration + 'ms';
