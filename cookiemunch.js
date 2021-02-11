@@ -1,4 +1,3 @@
-/*eslint no-self-assign: ["error", {"props": false}]*/
 var cookiemunch_function = function (passed_opts, block_functions) {
 
   var cookies_object;
