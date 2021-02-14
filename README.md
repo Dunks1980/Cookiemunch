@@ -22,19 +22,29 @@ npm install
 
 <br />
 
-To start a local server and make modifications:
+To start a local server and make a custom theme:
 ```
-npm run serve
+npm run custom
+```
+To start a local server and view/edit the default themes:
+```
+npm run default
 ```
 
 To build the production ready package:
 ```
 npm run build
 ```
+Then answer 1 for custom theme, 2 for default themes. <br/><br />
 
-To view the default bundled themes bundled in the npm package:
+
+To view the custom theme after build, to test:
 ```
-npm run default
+npm run customdist
+```
+To view the default themes after build, to test:
+```
+npm run defaultdist
 ```
 <br />
 <br />
@@ -43,7 +53,7 @@ npm run default
 
 <br />
 
-Run "npm run serve" then make some changes to the following files, the changes will live-reload, these are the files that get compiled to ./dist.
+Run "npm run custom" then make some changes to the following files, the changes will live-reload.
 
 ```
 src/js/cookiemunch_custom.js
@@ -54,6 +64,30 @@ src/scss/cookiemunch_common_custom.scss
 
 src/images/cookiemunch_custom.svg
 ```
+<br />
+
+From liine 15 of src/scss/cookiemunch_custom.scss, these are the main colour controls. Making a change to just $main-body-bg and $main-body-text can drastically change its appearance.
+```scss
+// override theme:
+$main-body-bg: #1b1d35;
+$main-body-text: rgb(184, 178, 235);
+$main-body-border-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.4);
+$btn-border: 0px solid #fff;
+$btn-text: #fff;
+$btn-bg-decline: rgb(197, 49, 49);
+$btn-bg-accept_select: #4b4b4b;
+$btn-bg-accept_selected: rgb(49, 91, 197);
+$btn-bg-accept_all: rgb(36, 146, 64);
+$switch-on-bg: $btn-bg-accept_selected; 
+$mix-btn-bg-with: $main-body-text;
+$mix-btn-bg-with-percent: 65%;
+```
+All colour variables are in the file src/scss/cookiemunch_custom.scss but if you need further changes, they can be made in src/scss/cookiemunch_common_custom.scss.<br />
+
+For the cookie image 3 options are included, If you choose to use your own design its ideal ratio is square 1:1, any type of image can be used but for best results .svg or .png with transparency are recommended.<br />
+
+For any js customizations the file is src/js/cookiemunch_custom.js, if you add anything cool please send me a pull request and I will consider adding it to the main branch.
+
 
 <br />
 
@@ -61,17 +95,26 @@ src/images/cookiemunch_custom.svg
 
 <br />
 
-Run "npm run build", once complete the auto pre-fixed and minifed files will be available in ./dist as:
+Run "npm run build", then select either 1 for custom (this will compile only the \*_custom\* files), or 2 for default (this will build the bundled default themes and not custom). Once complete the auto pre-fixed and minifed files will be available in ./dist. <br/>
 
+Custom:
 ```
 cookiemunch_custom.min.js
-
 cookiemunch_custom.min.css
-
 cookiemunch_custom.svg
 ```
+Default:
+```
+cookiemunch_flat_dark.min.css
+cookiemunch_flat_dark.svg
+cookiemunch_flat_light.min.css
+cookiemunch_flat_light.svg
+cookiemunch.min.css
+cookiemunch.min.js
+cookiemunch.svg
+```
 
-If you would like to test the dist files after running build, <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> or something similar can be used to view index_custom.html, this uses the \*_custom.\* files from ./dist.
+If you would like to test the dist files after running build, "npm run customdist" to view custom build, or "npm run defaultdist" to view default build. You cant build default then run customdist and vice versa.
 
 <br />
 

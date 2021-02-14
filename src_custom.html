@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>src_custom.html | Cookiemunch</title>
+  <title>custom | Cookiemunch</title>
   <link rel="icon" href="/favicon.ico">
   <!-- <link rel="stylesheet" href="/cookiemunch.min.css"> -->
   <!-- <link rel="stylesheet" href="/cookiemunch_flat_light.min.css"> -->
@@ -34,52 +34,90 @@
       padding: 10px 20px;
       cursor: pointer;
     }
+    .block-buttons-message {
+      background: rgba(0, 0, 0 , 0.7);
+      max-width: 700px;
+      margin: 0 auto;
+      border-radius: 5px;
+      padding: 20px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="buttons">
-    <button class="example-button" onclick="cookiemunch_toggle_popup();">Toggle popup</button>
-    <button class="example-button" onclick="cookiemunch_remove_all_cookies();">Remove all cookies</button>
-    <button class="example-button" onclick="changeTheme();">Change theme</button>
+
+  <img id="image-link1" src="/src/images/cookiemunch_custom.svg" alt="hidden" width="0" height="0">
+
+  <div class="block-buttons-message">
+    <div class="buttons">
+      <button class="example-button" onclick="cookiemunch_toggle_popup();">Toggle popup</button>
+      <button class="example-button" onclick="cookiemunch_remove_all_cookies();">Remove all cookies</button>
+      <label for="color-picker">Background:<br>
+        <input id="color-picker" name="color-picker" type="color" value="#ff0000">
+      </label>
+    </div>
+    <pre class="code-text" id="message-log"
+    style="margin-bottom: 10px !important;">Change 🍪 settings to update this view!</pre>
   </div>
 
-  <pre class="code-text" id="message-log"
-  style="margin-bottom: 10px !important;">Change 🍪 settings to update this view!</pre>
+
 
   <script>
-    var themelink;
     var dark_style = 'background: #101010; color: #fff;';
     var light_style = 'background: #fff; color: #000;';
-    function changeTheme() {
-      themelink = document.getElementById('theme-link');
-      if (themelink.getAttribute('href') === '/cookiemunch.min.css') {
-        themelink.href = '/cookiemunch_flat_light.min.css';
-        document.body.style = light_style;
-        cookiemunch_options.settings.cookie_image = '/cookiemunch_flat_light.svg';
-        cookiemunch(cookiemunch_options);
-      } else if (themelink.getAttribute('href') === '/cookiemunch_flat_light.min.css') {
-        themelink.href = '/cookiemunch_flat_dark.min.css';
-        document.body.style = dark_style;
-        cookiemunch_options.settings.cookie_image = '/cookiemunch_flat_dark.svg';
-        cookiemunch(cookiemunch_options);
-      } else {
-        themelink.href = '/cookiemunch.min.css';
-        document.body.style = light_style;
-        cookiemunch_options.settings.cookie_image = '/cookiemunch.svg';
-        cookiemunch(cookiemunch_options);
-      }
+
+    var image1 = document.querySelector('#image-link1').getAttribute('src');
+
+    var colorpicker = document.querySelector('#color-picker');
+    var body = document.querySelector('body');
+    colorpicker.addEventListener("input", function(val) {
+      body.style.background = colorpicker.value;
+      setCookie('cookiemunch_bg_color', colorpicker.value, 365);
+    })
+
+    var cookie_color = getCookie('cookiemunch_bg_color');
+
+    if(cookie_color) {
+      colorpicker.value = cookie_color;
+      body.style.background = cookie_color;
+    } else {
+      colorpicker.value = '#1b1d35';
+      body.style.background = '#1b1d35';
     }
+
+    function setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 500));
+      var expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
 
     var cookiemunch_options = {
       settings: {
         reload: false,
         hide_icon: false,
-        cookies_to_exclude: [],
+        cookies_to_exclude: ['cookiemunch_bg_color'],
         keep_all_cookies: false,
         first_visit_checked: true,
         start_dropdown_closed: false,
-        cookie_image: '/cookiemunch_custom.svg',
+        cookie_image: image1,
         cookie_title: 'Cookies settings',
         cookie_optional: 'Optional',
         cookie_required: 'Required',

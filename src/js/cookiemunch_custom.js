@@ -1,11 +1,25 @@
 var cookiemunch_function = function (passed_opts, block_functions) {
 
-  var cookies_object;
-  var required_cookies;
-  var plugin_settings;
-  var toggle_view_el;
-  var duration = 300;
-  var state_map = [];
+  var cookies_object,
+    required_cookies,
+    plugin_settings,
+    toggle_view_el,
+    duration = 300,
+    state_map = [],
+    cookie_image = 'https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg',
+    cookie_title = 'Cookies settings',
+    cookie_optional = 'Optional',
+    cookie_required = 'Required',
+    cookie_accept_label = 'Allow Cookies:',
+    cookie_required_label = 'These Cookies are required in order for the site to function.',
+    cookie_button_none = 'None',
+    cookie_button_required = 'Required',
+    cookie_button_select = 'Select',
+    cookie_button_selected = 'Selected',
+    cookie_button_all = 'All',
+    cookie_button_no = 'No',
+    cookie_button_yes = 'Yes',
+    cookie_button_close = 'Close';
 
   function cookiemunch_set_settings() {
     if (passed_opts.settings) {
@@ -16,20 +30,20 @@ var cookiemunch_function = function (passed_opts, block_functions) {
         keep_all_cookies: passed_opts.settings.keep_all_cookies || false,
         first_visit_checked: passed_opts.settings.first_visit_checked || false,
         start_dropdown_closed: passed_opts.settings.start_dropdown_closed || false,
-        cookie_image: passed_opts.settings.cookie_image || 'https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg',
-        cookie_title: passed_opts.settings.cookie_title || 'Cookies settings',
-        cookie_optional: passed_opts.settings.cookie_optional || 'Optional',
-        cookie_required: passed_opts.settings.cookie_required || 'Required',
-        cookie_accept_label: passed_opts.settings.cookie_accept_label || 'Allow Cookies:',
-        cookie_required_label: passed_opts.settings.cookie_required_label || 'These Cookies are required in order for the site to function.',
-        cookie_button_none: passed_opts.settings.cookie_button_none || 'None',
-        cookie_button_required: passed_opts.settings.cookie_button_required || 'Required',
-        cookie_button_select: passed_opts.settings.cookie_button_select || 'Select',
-        cookie_button_selected: passed_opts.settings.cookie_button_selected || 'Selected',
-        cookie_button_all: passed_opts.settings.cookie_button_all || 'All',
-        cookie_button_no: passed_opts.settings.cookie_button_no || 'No',
-        cookie_button_yes: passed_opts.settings.cookie_button_yes || 'Yes',
-        cookie_button_agree: passed_opts.settings.cookie_button_close || 'Close'
+        cookie_image: passed_opts.settings.cookie_image || cookie_image,
+        cookie_title: passed_opts.settings.cookie_title || cookie_title,
+        cookie_optional: passed_opts.settings.cookie_optional || cookie_optional,
+        cookie_required: passed_opts.settings.cookie_required || cookie_required,
+        cookie_accept_label: passed_opts.settings.cookie_accept_label || cookie_accept_label,
+        cookie_required_label: passed_opts.settings.cookie_required_label || cookie_required_label,
+        cookie_button_none: passed_opts.settings.cookie_button_none || cookie_button_none,
+        cookie_button_required: passed_opts.settings.cookie_button_required || cookie_button_required,
+        cookie_button_select: passed_opts.settings.cookie_button_select || cookie_button_select,
+        cookie_button_selected: passed_opts.settings.cookie_button_selected || cookie_button_selected,
+        cookie_button_all: passed_opts.settings.cookie_button_all || cookie_button_all,
+        cookie_button_no: passed_opts.settings.cookie_button_no || cookie_button_no,
+        cookie_button_yes: passed_opts.settings.cookie_button_yes || cookie_button_yes,
+        cookie_button_agree: passed_opts.settings.cookie_button_close || cookie_button_close
       };
     } else {
       plugin_settings = {
@@ -39,20 +53,20 @@ var cookiemunch_function = function (passed_opts, block_functions) {
         keep_all_cookies: false,
         first_visit_checked: false,
         start_dropdown_closed: false,
-        cookie_image: 'https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg',
-        cookie_title: 'Cookies settings',
-        cookie_optional: 'Optional',
-        cookie_required: 'Required',
-        cookie_accept_label: 'Allow Cookies:',
-        cookie_required_label: 'These Cookies are required in order for the site to function.',
-        cookie_button_none: 'None',
-        cookie_button_required: 'Required',
-        cookie_button_select: 'Select',
-        cookie_button_selected: 'Selected',
-        cookie_button_all: 'All',
-        cookie_button_no: 'No',
-        cookie_button_yes: 'Yes',
-        cookie_button_agree: 'Close'
+        cookie_image: cookie_image,
+        cookie_title: cookie_title,
+        cookie_optional: cookie_optional,
+        cookie_required: cookie_required,
+        cookie_accept_label: cookie_accept_label,
+        cookie_required_label: cookie_required_label,
+        cookie_button_none: cookie_button_none,
+        cookie_button_required: cookie_button_required,
+        cookie_button_select: cookie_button_select,
+        cookie_button_selected: cookie_button_selected,
+        cookie_button_all: cookie_button_all,
+        cookie_button_no: cookie_button_no,
+        cookie_button_yes: cookie_button_yes,
+        cookie_button_agree: cookie_button_close
       };
     }
   }
@@ -121,11 +135,6 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     }
   }
 
-  function cookie_value_selected() {
-    var check_this_cookie = 'cookiemunch_' + 'option_selected';
-    setCookie(check_this_cookie, true, 365);
-  }
-
   function remove_all_cookies() {
     deleteAllCookies();
     for (var i = 0; i < cookies_object.length; i++) {
@@ -188,7 +197,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
       }
     }
     slideUp(toggle_view_el, duration);
-    cookie_value_selected();
+    setCookie('cookiemunch_option_selected', true, 365);
     if (plugin_settings.reload) {
       setTimeout(function () {
         location.reload();
@@ -250,17 +259,17 @@ var cookiemunch_function = function (passed_opts, block_functions) {
   /* closes panel */
   var slideUp = function (target, duration) {
     toggling_cookiemunch_popup = true;
-
+    var cookie_munch_el = document.getElementById("cookie_munch_element");
     if (plugin_settings.hide_icon) {
       //document.getElementById("cookie_munch_element").setAttribute("class", "closed");
-      document.getElementById("cookie_munch_element").setAttribute("style", "transition: 0.3s ease-in-out; opacity:0;");
+      cookie_munch_el.setAttribute("style", "transition: 0.3s ease-in-out; opacity:0;");
       window.setTimeout(function () {
-        document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
+        cookie_munch_el.setAttribute("class", "closed-fully");
         toggling_cookiemunch_popup = false;
       }, duration);
     } else {
-      document.getElementById("cookie_munch_element").setAttribute("style", "");
-      document.getElementById("cookie_munch_element").setAttribute("class", "closed");
+      cookie_munch_el.setAttribute("style", "");
+      cookie_munch_el.setAttribute("class", "closed");
       target.style.transitionProperty = 'height, margin, padding';
       target.style.transitionDuration = duration + 'ms';
       target.style.boxSizing = 'border-box';
@@ -283,7 +292,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
         target.style.removeProperty('overflow');
         target.style.removeProperty('transition-duration');
         target.style.removeProperty('transition-property');
-        document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
+        cookie_munch_el.setAttribute("class", "closed-fully");
         toggling_cookiemunch_popup = false;
       }, duration);
     }
@@ -292,22 +301,24 @@ var cookiemunch_function = function (passed_opts, block_functions) {
   /* opens panel */
   var slideDown = function (target, duration) {
     toggling_cookiemunch_popup = true;
+    var cookie_munch_el = document.getElementById("cookie_munch_element");
+    var close_panel = document.querySelector(".close_panel");
     state_map_record();
     if (plugin_settings.hide_icon) {
-      document.getElementById("cookie_munch_element").setAttribute("style", "transition: 1s ease-in-out; opacity:1;");
-      document.getElementById("cookie_munch_element").setAttribute("class", "open");
+      cookie_munch_el.setAttribute("style", "transition: 1s ease-in-out; opacity:1;");
+      cookie_munch_el.setAttribute("class", "open");
       if (checkCookie('cookiemunch_' + 'option_selected')) {
-        document.querySelector(".close_panel").setAttribute("style", "display: block;");
+        close_panel.setAttribute("style", "display: block;");
       } else {
-        document.querySelector(".close_panel").setAttribute("style", "display: none;");
+        close_panel.setAttribute("style", "display: none;");
       }
       window.setTimeout(function () {
-        document.getElementById("cookie_munch_element").setAttribute("class", "open-fully");
+        cookie_munch_el.setAttribute("class", "open-fully");
         toggling_cookiemunch_popup = false;
       }, duration);
     } else {
-      document.getElementById("cookie_munch_element").setAttribute("style", "");
-      document.getElementById("cookie_munch_element").setAttribute("class", "open");
+      cookie_munch_el.setAttribute("style", "");
+      cookie_munch_el.setAttribute("class", "open");
       target.style.removeProperty('display');
       var display = window.getComputedStyle(target).display;
       if (display === 'none') display = 'block';
@@ -330,16 +341,16 @@ var cookiemunch_function = function (passed_opts, block_functions) {
       target.style.removeProperty('margin-top');
       target.style.removeProperty('margin-bottom');
       if (checkCookie('cookiemunch_' + 'option_selected')) {
-        document.querySelector(".close_panel").setAttribute("style", "display: block;");
+        close_panel.setAttribute("style", "display: block;");
       } else {
-        document.querySelector(".close_panel").setAttribute("style", "display: none;");
+        close_panel.setAttribute("style", "display: none;");
       }
       window.setTimeout(function () {
         target.style.removeProperty('height');
         target.style.removeProperty('overflow');
         target.style.removeProperty('transition-duration');
         target.style.removeProperty('transition-property');
-        document.getElementById("cookie_munch_element").setAttribute("class", "open-fully");
+        cookie_munch_el.setAttribute("class", "open-fully");
         toggling_cookiemunch_popup = false;
       }, duration);
     }
@@ -563,7 +574,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     }
     setTimeout(function () {
       cookie_munch_el.setAttribute("style", "transition: 0.3s ease-in-out; opacity:1;");
-    }, 200);
+    }, duration);
   }
 
   // set checked if cookies

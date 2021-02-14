@@ -6,11 +6,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>src.html | Cookiemunch</title>
+  <title>default | Cookiemunch</title>
   <link rel="icon" href="/favicon.ico">
   <!-- <link rel="stylesheet" href="/cookiemunch.min.css"> -->
   <!-- <link rel="stylesheet" href="/cookiemunch_flat_light.min.css"> -->
-  <link id="theme-link" rel="stylesheet" type="text/css" href="/src/scss/cookiemunch_flat_dark.scss">
+  <link id="theme-link1" rel="stylesheet" type="text/css" href="/src/scss/cookiemunch.scss" media="print">
+  <link id="theme-link2" rel="stylesheet" type="text/css" href="/src/scss/cookiemunch_flat_light.scss" media="print">
+  <link id="theme-link3" rel="stylesheet" type="text/css" href="/src/scss/cookiemunch_flat_dark.scss" media="print">
+  <link id="theme-link" rel="stylesheet" type="text/css">
+
   <script src="/src/js/cookiemunch.js"></script>
   <style>
     body {
@@ -38,6 +42,11 @@
 </head>
 
 <body>
+
+  <img id="image-link1" src="/src/images/cookiemunch.svg" alt="hidden" width="0" height="0">
+  <img id="image-link2" src="/src/images/cookiemunch_flat_light.svg" alt="hidden" width="0" height="0">
+  <img id="image-link3" src="/src/images/cookiemunch_flat_dark.svg" alt="hidden" width="0" height="0">
+
   <div class="buttons">
     <button class="example-button" onclick="cookiemunch_toggle_popup();">Toggle popup</button>
     <button class="example-button" onclick="cookiemunch_remove_all_cookies();">Remove all cookies</button>
@@ -51,22 +60,33 @@
     var themelink;
     var dark_style = 'background: #101010; color: #fff;';
     var light_style = 'background: #fff; color: #000;';
+
+    var theme1 = document.querySelector('#theme-link1').getAttribute('href');
+    var theme2 = document.querySelector('#theme-link2').getAttribute('href');
+    var theme3 = document.querySelector('#theme-link3').getAttribute('href');
+
+    document.querySelector('#theme-link').setAttribute('href', theme1);
+
+    var image1 = document.querySelector('#image-link1').getAttribute('src');
+    var image2 = document.querySelector('#image-link2').getAttribute('src');
+    var image3 = document.querySelector('#image-link3').getAttribute('src');
+
     function changeTheme() {
       themelink = document.getElementById('theme-link');
-      if (themelink.getAttribute('href') === '/cookiemunch.min.css') {
-        themelink.href = '/cookiemunch_flat_light.min.css';
+      if (themelink.getAttribute('href') === theme1) {
+        themelink.href = theme2;
         document.body.style = light_style;
-        cookiemunch_options.settings.cookie_image = '/cookiemunch_flat_light.svg';
+        cookiemunch_options.settings.cookie_image = image2;
         cookiemunch(cookiemunch_options);
-      } else if (themelink.getAttribute('href') === '/cookiemunch_flat_light.min.css') {
-        themelink.href = '/cookiemunch_flat_dark.min.css';
+      } else if (themelink.getAttribute('href') === theme2) {
+        themelink.href = theme3;
         document.body.style = dark_style;
-        cookiemunch_options.settings.cookie_image = '/cookiemunch_flat_dark.svg';
+        cookiemunch_options.settings.cookie_image = image3;
         cookiemunch(cookiemunch_options);
       } else {
-        themelink.href = '/cookiemunch.min.css';
+        themelink.href = theme1;
         document.body.style = light_style;
-        cookiemunch_options.settings.cookie_image = '/cookiemunch.svg';
+        cookiemunch_options.settings.cookie_image = image1;
         cookiemunch(cookiemunch_options);
       }
     }
@@ -81,7 +101,7 @@
         start_dropdown_closed: false,
         //cookie_image: '/cookiemunch.svg',
         //cookie_image: '/cookiemunch_flat_light.svg',
-        cookie_image: '/cookiemunch_flat_light.svg',
+        // cookie_image: '/cookiemunch_flat_light.svg',
         cookie_title: 'Cookies settings',
         cookie_optional: 'Optional',
         cookie_required: 'Required',
@@ -233,3 +253,4 @@
 </body>
 
 </html>
+

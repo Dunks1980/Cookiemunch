@@ -3,8 +3,10 @@
   "version": "1.0.65",
   "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
   "scripts": {
-    "serve": "parcel src_custom.html",
+    "custom": "parcel src_custom.html",
+    "customdist": "static-server -i index_custom.html -p 8234 -z",
     "default": "parcel src.html",
+    "defaultdist": "static-server -i index.html -p 8235 -z",
     "build": "node scripts/build_task.js"
   },
   "author": "Ian Dunkerley",
@@ -30,10 +32,11 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
+    "dotenv": "^8.2.0",
     "parcel-bundler": "^1.12.4",
     "postcss": "^8.2.6",
     "sass": "^1.32.7",
-    "dotenv": "^8.2.0"
+    "static-server": "^2.2.1"
   },
   "browserslist": [
     "> 1%",
