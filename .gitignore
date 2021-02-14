@@ -1,4 +1,6 @@
+.cache/
+dist/
 node_modules/
 .vscode/
-*.min.css
-*.min.js
+*.tgz
+package-lock.json
