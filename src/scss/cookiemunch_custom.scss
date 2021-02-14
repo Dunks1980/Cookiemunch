@@ -1,0 +1,70 @@
+// body-bg and body-text mix:
+$main-body-bg: #fff;
+$main-body-text: rgb(67, 67, 67);
+$main-body-border-shadow: 0 0px 0px 1px rgba(255, 255, 255, 0.1);
+$btn-border: 1px solid mix($main-body-bg, $main-body-text, 85%);
+$btn-text: $main-body-text;
+$btn-bg-decline: mix($main-body-bg, $main-body-text, 95%);
+$btn-bg-accept_select: mix($main-body-bg, $main-body-text, 95%);
+$btn-bg-accept_selected: mix($main-body-bg, $main-body-text, 95%);
+$btn-bg-accept_all: mix($main-body-bg, $main-body-text, 95%);
+$switch-on-bg: mix($main-body-bg, $main-body-text, 20%); 
+$mix-btn-bg-with: $main-body-text;
+$mix-btn-bg-with-percent: 95%;
+
+// override theme:
+// $main-body-bg: #fff;
+// $main-body-text: #fff;
+$main-body-border-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.4);
+$btn-border: 0px solid #fff;
+$btn-text: #fff;
+$btn-bg-decline: rgb(197, 49, 49);
+$btn-bg-accept_select: #4b4b4b;
+$btn-bg-accept_selected: rgb(49, 91, 197);
+$btn-bg-accept_all: rgb(36, 146, 64);
+$switch-on-bg: $btn-bg-accept_selected; 
+$mix-btn-bg-with: $main-body-text;
+$mix-btn-bg-with-percent: 65%;
+
+// panel body
+$panel-body-bg: mix($main-body-bg, $main-body-text, 95%);
+$panel-body-border: 1px solid mix($main-body-bg, $main-body-text, 85%);
+$panel-body-h2: transparentize($main-body-text, 0);
+$panel-body-p: transparentize($main-body-text, 0.4);
+$panel-body-a: rgb(75, 126, 255);
+$panel-dropdown-line: 1px solid mix($main-body-bg, $main-body-text, 75%);
+
+// switch 
+$switch-off-bg: mix($main-body-bg, $main-body-text, 75%);
+$switch-fg: mix($main-body-bg, $main-body-text, 100%);
+
+// accepted/declined
+$accepted-tick: rgb(36, 146, 64);
+$declined-times: rgb(197, 49, 49);
+
+// decline
+$btn-bg-hvr-decline: mix($btn-bg-decline, $mix-btn-bg-with, $mix-btn-bg-with-percent);
+$btn-text-decline: $btn-text;
+$btn-border-decline: $btn-border;
+
+// accept_select
+$btn-bg-hvr-accept_select: mix($btn-bg-accept_select, $mix-btn-bg-with, $mix-btn-bg-with-percent);
+$btn-text-accept_select: $btn-text;
+$btn-border-accept_select: $btn-border;
+
+// accept_selected
+$btn-bg-hvr-accept_selected: mix($btn-bg-accept_selected, $mix-btn-bg-with, $mix-btn-bg-with-percent);
+$btn-text-accept_selected: $btn-text;
+$btn-border-accept_selected: $btn-border;
+
+// accept_all
+$btn-bg-hvr-accept_all: mix($btn-bg-accept_all, $mix-btn-bg-with, $mix-btn-bg-with-percent);
+$btn-text-accept_all: $btn-text;
+$btn-border-accept_all: $btn-border;
+
+// scrollbar
+$scrollbar-bg: $main-body-bg;
+$scrollbar-track: mix($main-body-bg, $main-body-text, 80%);
+$scrollbar-thumb: mix($main-body-bg, $main-body-text, 30%);
+
+@import 'cookiemunch_common_custom.scss';
