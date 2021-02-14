@@ -1,6 +1,6 @@
 {
   "name": "Cookiemunch",
-  "version": "1.0.64",
+  "version": "1.0.65",
   "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
   "scripts": {
     "serve": "parcel src.html",
@@ -8,9 +8,17 @@
     "deploy": "npm publish dist/",
     "test": "npm pack dist/"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Ian Dunkerley",
+  "license": "MIT",
+  "homepage": "https://cookiemunch.dunks1980.com/",
+  "keywords": ["Vue-js", "Vue", "Vue3", "cookie", "cookies", "popup", "plugin", "Cookiemunch", "dunks1980"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dunks1980/Cookiemunch"
+  },
+  "bugs": {
+    "url": "https://github.com/Dunks1980/Cookiemunch/issues"
+  },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "parcel-bundler": "^1.12.4",
