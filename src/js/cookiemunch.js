@@ -650,6 +650,7 @@ var cookiemunch_function = function (passed_opts, block_functions) {
 
 if (typeof exports != "undefined") {
   exports.cookiemunch = cookiemunch_function;
+  window.cookiemunch = cookiemunch_function;
 } else {
   window.cookiemunch = cookiemunch_function;
 }
