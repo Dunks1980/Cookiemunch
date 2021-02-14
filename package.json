@@ -1,5 +1,5 @@
 {
-  "name": "Cookiemunch",
+  "name": "cookiemunch",
   "version": "1.0.65",
   "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
   "scripts": {
