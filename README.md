@@ -66,7 +66,7 @@ src/images/cookiemunch_custom.svg
 ```
 <br />
 
-From liine 15 of src/scss/cookiemunch_custom.scss, these are the main colour controls. Making a change to just $main-body-bg and $main-body-text can drastically change its appearance.
+From line 15 of src/scss/cookiemunch_custom.scss, these are the main colour controls. Making a change to just $main-body-bg and $main-body-text can drastically change its appearance.
 ```scss
 // override theme:
 $main-body-bg: #1b1d35;
