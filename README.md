@@ -99,7 +99,7 @@ Run "npm run build", then select either 1 for custom (this will compile only the
 
 Custom:
 ```
-cookiemunch_custom.min.js
+cookiemunch.min.js
 cookiemunch_custom.min.css
 cookiemunch_custom.svg
 ```
