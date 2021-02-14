@@ -98,7 +98,12 @@ function start_the_build() {
   console.log(`npm run ${build}dist\n`);
 
   if (process.env.NPM_PACKAGE === 'true') {
-    console.log("Test npm package:\nnpm pack dist/\n\nDeploy npm package:\nnpm publish dist/");
+    if (build === 'default') {
+      console.log("NPM package can now be tested and published.\n");
+      console.log("Test npm package:\nnpm pack dist/\n\nDeploy npm package:\nnpm publish dist/");
+    } else {
+      console.log("DO NOT PUBLISH THIS TO NPM!!!");
+    }
   }
 }
 
