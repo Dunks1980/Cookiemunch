@@ -4,7 +4,7 @@ const path = require('path');
 const CWD = process.cwd();
 const PACKAGE = require(path.join(CWD, 'package.json'));
 
-let package_details = `` +
+let package_details =
 `{
   "name": "@dunks1980/cookiemunch",
   "version": ${JSON.stringify(PACKAGE.version)},
