@@ -11,7 +11,7 @@ try {
     custom_dist();
   } else {
     console.log("No dist found\n");
-    console.log('Try "npm run dist"\n');
+    console.log('Try "npm run build"\n');
   }
 } catch(err) {
   console.error(err);
