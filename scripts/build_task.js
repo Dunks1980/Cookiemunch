@@ -9,7 +9,6 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-
 let build;
 
 rl.question("What are you building? Answer: 1 for custom, 2 for default. \n", function(answer) {
@@ -23,13 +22,12 @@ rl.question("What are you building? Answer: 1 for custom, 2 for default. \n", fu
 
 rl.on("close", function() {
   if (build) {
-    generate_parcel_scripts(build);
+    generate_parcel_scripts();
     start_the_build();
   } else {
     console.log("\nBuild Cancelled, Please answer 1 for custom, 2 for default.");
   }
-   
-    process.exit(0);
+  process.exit(0);
 });
 
 
@@ -56,7 +54,7 @@ function deleteFolderRecursive(path) {
 
 // run the parcel scripts
 let parcel_scripts = '';
-function generate_parcel_scripts(build) {
+function generate_parcel_scripts() {
   if (build === 'default') {
     parcel_scripts =
       'parcel build src/js/cookiemunch.js --global window -o /cookiemunch.min.js --no-content-hash --no-source-maps --experimental-scope-hoisting && ' +
@@ -95,7 +93,7 @@ function start_the_build() {
   // final messages
   console.log(`Your ${build} Cookiemunch prodution ready files are now baked in ./dist, they smell delicious!\n`);
   console.log(`To see how they look:\n`);
-  console.log(`npm run ${build}dist\n`);
+  console.log(`npm run dist\n`);
 
   if (process.env.NPM_PACKAGE === 'true') {
     if (build === 'default') {
@@ -106,9 +104,3 @@ function start_the_build() {
     }
   }
 }
-
-
-
-
-
-

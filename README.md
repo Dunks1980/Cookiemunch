@@ -7,11 +7,11 @@ If you wish to support this project please [buy me a coffee.](https://www.buymea
 <br />
 <br />
 
-## To set up and run your local development:
+## Installation:
 
 <br />
 
-Get the repo:
+Download the ZIP or:
 ```
 git clone https://github.com/Dunks1980/Cookiemunch.git
 ```
@@ -19,7 +19,9 @@ Then install dev dependencies:
 ```
 npm install
 ```
+<br />
 
+## Customizing:
 <br />
 
 To start a local server and make a custom theme:
@@ -31,26 +33,40 @@ To start a local server and view/edit the default themes:
 npm run default
 ```
 
-To build the production ready package:
+<br />
+
+## Building for production:
+<br />
+
 ```
 npm run build
 ```
-Then answer 1 for custom theme, 2 for default themes. <br/><br />
+Then answer 1 for custom (this will compile only the \*_custom\* files), or 2 for default (this will build the bundled default themes and not custom). Once complete the auto pre-fixed and minifed files will be available in ./dist. <br/>
 
+Custom:
+```
+cookiemunch.min.js
+cookiemunch_custom.min.css
+cookiemunch_custom.svg
+```
+Default:
+```
+cookiemunch_flat_dark.min.css
+cookiemunch_flat_dark.svg
+cookiemunch_flat_light.min.css
+cookiemunch_flat_light.svg
+cookiemunch.min.css
+cookiemunch.min.js
+cookiemunch.svg
+```
 
-To view the custom theme after build, to test:
+To test the build ./dist:
 ```
-npm run customdist
+npm run dist
 ```
-To view the default themes after build, to test:
-```
-npm run defaultdist
-```
-<br />
 <br />
 
 ## Making changes:
-
 <br />
 
 Run "npm run custom" then make some changes to the following files, the changes will live-reload.
@@ -87,35 +103,5 @@ All colour variables are in the file src/scss/cookiemunch_custom.scss but if you
 For the cookie image 3 options are included, If you choose to use your own design its ideal ratio is square 1:1, any type of image can be used but for best results .svg or .png with transparency are recommended.<br />
 
 For any js customizations the file is src/js/cookiemunch_custom.js, if you add anything cool please send me a pull request and I will consider adding it to the main branch.
-
-
-<br />
-
-## Building for production:
-
-<br />
-
-Run "npm run build", then select either 1 for custom (this will compile only the \*_custom\* files), or 2 for default (this will build the bundled default themes and not custom). Once complete the auto pre-fixed and minifed files will be available in ./dist. <br/>
-
-Custom:
-```
-cookiemunch.min.js
-cookiemunch_custom.min.css
-cookiemunch_custom.svg
-```
-Default:
-```
-cookiemunch_flat_dark.min.css
-cookiemunch_flat_dark.svg
-cookiemunch_flat_light.min.css
-cookiemunch_flat_light.svg
-cookiemunch.min.css
-cookiemunch.min.js
-cookiemunch.svg
-```
-
-If you would like to test the dist files after running build, "npm run customdist" to view custom build, or "npm run defaultdist" to view default build. You cant build default then run customdist and vice versa.
-
-<br />
 
 More information on configuring Cookiemunch can be found <a href="https://cookiemunch.dunks1980.com/">here</a>. 

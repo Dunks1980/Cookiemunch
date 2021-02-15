@@ -4,10 +4,9 @@
   "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
   "scripts": {
     "custom": "parcel src_custom.html",
-    "customdist": "static-server -i index_custom.html -p 8234 -z",
     "default": "parcel src.html",
-    "defaultdist": "static-server -i index.html -p 8235 -z",
-    "build": "node scripts/build_task.js"
+    "build": "node scripts/build_task.js",
+    "dist": "node scripts/test_dist.js"
   },
   "author": "Ian Dunkerley",
   "license": "MIT",
