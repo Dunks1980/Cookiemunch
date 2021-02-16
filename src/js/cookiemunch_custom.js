@@ -5,70 +5,34 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     plugin_settings,
     toggle_view_el,
     duration = 300,
-    state_map = [],
-    cookie_image = 'https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg',
-    cookie_title = 'Cookies settings',
-    cookie_optional = 'Optional',
-    cookie_required = 'Required',
-    cookie_accept_label = 'Allow Cookies:',
-    cookie_required_label = 'These Cookies are required in order for the site to function.',
-    cookie_button_none = 'None',
-    cookie_button_required = 'Required',
-    cookie_button_select = 'Select',
-    cookie_button_selected = 'Selected',
-    cookie_button_all = 'All',
-    cookie_button_no = 'No',
-    cookie_button_yes = 'Yes',
-    cookie_button_close = 'Close';
+    state_map = [];
 
   function cookiemunch_set_settings() {
-    if (passed_opts.settings) {
-      plugin_settings = {
-        reload: passed_opts.settings.reload || false,
-        hide_icon: passed_opts.settings.hide_icon || false,
-        cookies_to_exclude: passed_opts.settings.cookies_to_exclude || [],
-        keep_all_cookies: passed_opts.settings.keep_all_cookies || false,
-        first_visit_checked: passed_opts.settings.first_visit_checked || false,
-        start_dropdown_closed: passed_opts.settings.start_dropdown_closed || false,
-        cookie_image: passed_opts.settings.cookie_image || cookie_image,
-        cookie_title: passed_opts.settings.cookie_title || cookie_title,
-        cookie_optional: passed_opts.settings.cookie_optional || cookie_optional,
-        cookie_required: passed_opts.settings.cookie_required || cookie_required,
-        cookie_accept_label: passed_opts.settings.cookie_accept_label || cookie_accept_label,
-        cookie_required_label: passed_opts.settings.cookie_required_label || cookie_required_label,
-        cookie_button_none: passed_opts.settings.cookie_button_none || cookie_button_none,
-        cookie_button_required: passed_opts.settings.cookie_button_required || cookie_button_required,
-        cookie_button_select: passed_opts.settings.cookie_button_select || cookie_button_select,
-        cookie_button_selected: passed_opts.settings.cookie_button_selected || cookie_button_selected,
-        cookie_button_all: passed_opts.settings.cookie_button_all || cookie_button_all,
-        cookie_button_no: passed_opts.settings.cookie_button_no || cookie_button_no,
-        cookie_button_yes: passed_opts.settings.cookie_button_yes || cookie_button_yes,
-        cookie_button_agree: passed_opts.settings.cookie_button_close || cookie_button_close
-      };
-    } else {
-      plugin_settings = {
-        reload: false,
-        hide_icon: false,
-        cookies_to_exclude: [],
-        keep_all_cookies: false,
-        first_visit_checked: false,
-        start_dropdown_closed: false,
-        cookie_image: cookie_image,
-        cookie_title: cookie_title,
-        cookie_optional: cookie_optional,
-        cookie_required: cookie_required,
-        cookie_accept_label: cookie_accept_label,
-        cookie_required_label: cookie_required_label,
-        cookie_button_none: cookie_button_none,
-        cookie_button_required: cookie_button_required,
-        cookie_button_select: cookie_button_select,
-        cookie_button_selected: cookie_button_selected,
-        cookie_button_all: cookie_button_all,
-        cookie_button_no: cookie_button_no,
-        cookie_button_yes: cookie_button_yes,
-        cookie_button_agree: cookie_button_close
-      };
+    if (!passed_opts.settings) {
+      passed_opts.settings = {};
     }
+    plugin_settings = {
+      reload: passed_opts.settings.reload || false,
+      hide_icon: passed_opts.settings.hide_icon || false,
+      cookies_to_exclude: passed_opts.settings.cookies_to_exclude || [],
+      keep_all_cookies: passed_opts.settings.keep_all_cookies || false,
+      first_visit_checked: passed_opts.settings.first_visit_checked || false,
+      start_dropdown_closed: passed_opts.settings.start_dropdown_closed || false,
+      cookie_image: passed_opts.settings.cookie_image || 'https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg',
+      cookie_title: passed_opts.settings.cookie_title || 'Cookies settings',
+      cookie_optional: passed_opts.settings.cookie_optional || 'Optional',
+      cookie_required: passed_opts.settings.cookie_required || 'Required',
+      cookie_accept_label: passed_opts.settings.cookie_accept_label || 'Allow Cookies:',
+      cookie_required_label: passed_opts.settings.cookie_required_label || 'These Cookies are required in order for the site to function.',
+      cookie_button_none: passed_opts.settings.cookie_button_none || 'None',
+      cookie_button_required: passed_opts.settings.cookie_button_required || 'Required',
+      cookie_button_select: passed_opts.settings.cookie_button_select || 'Select',
+      cookie_button_selected: passed_opts.settings.cookie_button_selected || 'Selected',
+      cookie_button_all: passed_opts.settings.cookie_button_all || 'All',
+      cookie_button_no: passed_opts.settings.cookie_button_no || 'No',
+      cookie_button_yes: passed_opts.settings.cookie_button_yes || 'Yes',
+      cookie_button_agree: passed_opts.settings.cookie_button_close || 'Close'
+    };
   }
 
   function setCookie(cname, cvalue, exdays) {
@@ -651,7 +615,6 @@ var cookiemunch_function = function (passed_opts, block_functions) {
     if (cookies_object.length === 0 && required_cookies.length === 0) {
       return false;
     }
-    cookiemunch_set_settings();
     setTimeout(function () {
       cookiemunch_load_plugin();
     }, 0);
