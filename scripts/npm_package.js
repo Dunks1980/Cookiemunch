@@ -24,7 +24,3 @@ stream.once('open', function(fd) {
 });
 
 console.log("dist\\package.json v" + PACKAGE.version);
-
-
-
-

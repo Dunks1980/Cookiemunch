@@ -30,8 +30,6 @@ rl.on("close", function() {
   process.exit(0);
 });
 
-
-
 function deleteFolderRecursive(path) {
   if (fs.existsSync(path) && fs.lstatSync(path).isDirectory()) {
     fs.readdirSync(path).forEach(function(file, index){
@@ -50,7 +48,6 @@ function deleteFolderRecursive(path) {
     fs.rmdirSync(path);
   }
 }
-
 
 // run the parcel scripts
 let parcel_scripts = '';
@@ -72,29 +69,22 @@ function generate_parcel_scripts() {
   }
 }
 
-
 function start_the_build() {
   // delete dist folder
   deleteFolderRecursive("./dist");
-
   console.log(execSync(parcel_scripts, {encoding: 'utf8'}));
-
   // LICENSE
   execSync("cp LICENSE dist/", {encoding: 'utf8'});
   console.log("dist\\LICENSE\n");
-
   // README
   execSync("cp README_NPM.md dist/README.md", {encoding: 'utf8'});
   console.log("dist\\README.md\n");
-
   // run npm_package.js
   console.log(execSync("node scripts/npm_package.js", {encoding: 'utf8'}));
-
   // final messages
   console.log(`Your ${build} Cookiemunch prodution ready files are now baked in ./dist, they smell delicious!\n`);
   console.log(`To see how they look:\n`);
   console.log(`npm run dist\n`);
-
   if (process.env.NPM_PACKAGE === 'true') {
     if (build === 'default') {
       console.log("NPM package can now be tested and published.\n");

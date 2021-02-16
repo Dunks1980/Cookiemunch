@@ -6,9 +6,9 @@ const custom_file = './dist/cookiemunch_custom.min.css';
 
 try {
   if (fs.existsSync(default_file) && !fs.existsSync(custom_file)) {
-    default_dist();
+    serve('default', 'index.html', 8234);
   } else if (!fs.existsSync(default_file) && fs.existsSync(custom_file)) {
-    custom_dist();
+    serve('custom', 'index_custom.html', 8234);
   } else {
     console.log("No dist found\n");
     console.log('Try "npm run build"\n');
@@ -17,33 +17,16 @@ try {
   console.error(err);
 }
 
-function default_dist() {
+function serve(type, file, port) {
   const server = new StaticServer({
     rootPath: '.',
-    port: 8234,
+    port: port,
     host: 'localhost',
     templates: {
-      index: 'index.html'
+      index: file
     }
   });
-  console.log('Starting server for default dist.');
-  server.start(function () {
-    console.log("\x1b[32m"); // green
-    console.log('Server listening to', 'http://' + server.host + ':' + server.port);
-    console.log("\x1b[0m"); // reset
-  });
-}
-
-function custom_dist() {
-  const server = new StaticServer({
-    rootPath: '.',
-    port: 8235,
-    host: 'localhost',
-    templates: {
-      index: 'index_custom.html'
-    }
-  });
-  console.log('Starting server for custom dist.');
+  console.log(`Starting server for ${type} dist.`);
   server.start(function () {
     console.log("\x1b[32m"); // green
     console.log('Server listening to', 'http://' + server.host + ':' + server.port);
