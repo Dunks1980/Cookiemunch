@@ -624,3 +624,8 @@ input:checked+.cookiemunch_slider:before {
 #cookiemunch_cookies_required.accepted {
   background: transparentize($required-bg-color, 1);
 }
+
+body.cookiemunch_scroll_block {
+  overflow: hidden;
+  height: 100vh;
+}
