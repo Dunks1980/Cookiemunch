@@ -129,7 +129,7 @@ const cookiemunch_function = (options_passed, block_functions) => {
     let el = document.getElementById('cookiemunch_cookies_required');
     if (el) {
       el.setAttribute('class', 'accepted');
-      body.classList.remove("cookiemunch_scroll_block");
+      document.body.classList.remove("cookiemunch_scroll_block");
       setTimeout(() => {
         let cookie_munch_element = document.querySelector('#cookie_munch_element');
         if (cookie_munch_element) {
@@ -758,7 +758,7 @@ const cookiemunch_function = (options_passed, block_functions) => {
       cookie_munch_el.appendChild(create_html_hot_cookie_options);
       cookie_munch_el_required.appendChild(cookie_munch_el);
       document.body.appendChild(cookie_munch_el_required);
-      body.classList.add("cookiemunch_scroll_block");
+      document.body.classList.add("cookiemunch_scroll_block");
     } else {
       cookie_munch_el.appendChild(create_html_hot_cookie_options);
       document.body.appendChild(cookie_munch_el);
