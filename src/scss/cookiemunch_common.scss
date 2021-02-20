@@ -170,11 +170,11 @@
 }
 
 .cookiemunch_wrapper {
-  max-height: 400px;
   overflow-y: auto;
   margin: 0;
   opacity: 0;
   transition: 0.2s ease-in-out;
+  max-height:33.3333vh;
 }
 [data-fade-switch="true"] {
   opacity: 1;
@@ -189,36 +189,7 @@
   opacity: 0;
 }
 
-@media screen and (max-height: 800px) {
-  .cookiemunch_wrapper {
-    max-height: 350px;
-  }
-}
-
-@media screen and (max-height: 700px) {
-  .cookiemunch_wrapper {
-    max-height: 250px;
-  }
-}
-
-@media screen and (max-height: 600px) {
-  .cookiemunch_wrapper {
-    max-height: 150px;
-  }
-}
-
 @media screen and (max-height: 500px) {
-  .cookiemunch_wrapper {
-    max-height: 100px;
-  }
-}
-
-@media screen and (max-height: 500px) {
-  .cookiemunch_wrapper {
-    max-height: 75px;
-
-  }
-
   #cookie_munch_element * {
     font-size: 12px !important;
   }
@@ -604,4 +575,51 @@ input:checked+.cookiemunch_slider:before {
   background-color: $scrollbar-thumb;
 }
 
+#cookie_munch_element {
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-right: -9px;
+  padding-right: 10px;
+}
+
+#cookie_munch_element::-webkit-scrollbar {
+  width: 12px;
+  background-color: $scrollbar-bg; 
+  border: solid 3px transparent;
+  box-sizing: content-box;
+  border-radius: 10px;
+}
+
+#cookie_munch_element::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: $scrollbar-track;
+  border: solid 3px $main-body-bg;
+}
+
+#cookie_munch_element::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 0px rgba(0, 0, 0, .3);
+  -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, .3);
+  background-color: $scrollbar-thumb;
+  border: solid 3px $main-body-bg;
+}
+
 /* > */
+
+#cookiemunch_cookies_required {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: $required-bg;
+  user-select: none;
+  transition: 0.3s ease-in-out;
+}
+
+#cookiemunch_cookies_required.accepted {
+  background: transparentize($required-bg-color, 1);
+}

@@ -5,6 +5,7 @@ const cookiemunch_function = (options_passed, block_functions) => {
     plugin_settings,
     toggle_view_el,
     duration = 300,
+    has_grouping,
     state_map = [];
 
   const cookiemunch_set_settings = () => {
@@ -13,6 +14,7 @@ const cookiemunch_function = (options_passed, block_functions) => {
     }
     plugin_settings = {
       reload: options_passed.settings.reload || false,
+      required: options_passed.settings.required || false,
       hide_icon: options_passed.settings.hide_icon || false,
       cookies_to_exclude: options_passed.settings.cookies_to_exclude || [],
       keep_all_cookies: options_passed.settings.keep_all_cookies || false,
@@ -104,7 +106,10 @@ const cookiemunch_function = (options_passed, block_functions) => {
     for (let i = 0; i < cookies_object.length; i++) {
       let check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
       deleteCookie(check_this_cookie);
-      document.getElementById(check_this_cookie).checked = false;
+      let el = document.getElementById(check_this_cookie);
+      if (el) {
+        el.checked = false;
+      }
       if (!plugin_settings.reload) {
         cookies_object[i].declined_function();
       }
@@ -120,22 +125,46 @@ const cookiemunch_function = (options_passed, block_functions) => {
     cookiemunch_load_plugin();
   };
 
+  remove_required_wrapper = () => {
+    let el = document.getElementById('cookiemunch_cookies_required');
+    if (el) {
+      el.setAttribute('class', 'accepted');
+      setTimeout(() => {
+        let cookie_munch_element = document.querySelector('#cookie_munch_element');
+        if (cookie_munch_element) {
+          document.body.appendChild(cookie_munch_element);
+          let cookiemunch_cookies_required = document.getElementById('cookiemunch_cookies_required');
+          if (cookiemunch_cookies_required) {
+            cookiemunch_cookies_required.remove();
+          }
+        }
+      }, 350);
+    }
+  };
+
   window.cookiemunch_decline = () => {
     if (!document.getElementById("cookie_munch_element")) return false;
     for (let i = 0; i < cookies_object.length; i++) {
-      let check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
-      document.getElementById(check_this_cookie).checked = false;
+      let check_this_el = document.getElementById('cookiemunch_' + cookies_object[i].id);
+      if (check_this_el) {
+        check_this_el.checked = false;
+      }
     }
     cookiemunch_accept_selected();
+    remove_required_wrapper();
   };
 
   window.cookiemunch_accept_all = () => {
     if (!document.getElementById("cookie_munch_element")) return false;
+
     for (let i = 0; i < cookies_object.length; i++) {
-      let check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
-      document.getElementById(check_this_cookie).checked = true;
+      let check_this_el = document.getElementById('cookiemunch_' + cookies_object[i].id);
+      if (check_this_el) {
+        check_this_el.checked = true;
+      }
     }
     cookiemunch_accept_selected();
+    remove_required_wrapper();
   };
 
   window.cookiemunch_accept_selected = () => {
@@ -147,8 +176,8 @@ const cookiemunch_function = (options_passed, block_functions) => {
     deleteAllCookies();
     for (let i = 0; i < cookies_object.length; i++) {
       let check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
-      let is_checked = document.getElementById(check_this_cookie).checked;
-      if (is_checked) {
+      let el = document.getElementById(check_this_cookie);
+      if (el && el.checked) {
         setCookie(check_this_cookie, true, 365);
         if (!plugin_settings.reload) {
           cookies_object[i].accepted_function();
@@ -166,22 +195,28 @@ const cookiemunch_function = (options_passed, block_functions) => {
       setTimeout(() => {
         location.reload();
       }, Number(duration + 100));
+    } else {
+      remove_required_wrapper();
     }
   };
 
   const state_map_record = () => {
     state_map = [];
     [].forEach.call(cookies_object, (item) => {
-      let is_checked = document.getElementById('cookiemunch_' + item.id).checked;
-      state_map.push(is_checked);
+      let el = document.getElementById('cookiemunch_' + item.id);
+      if (el) {
+        state_map.push(el.checked);
+      }
     });
   };
 
   const state_map_match = () => {
     let match_map = [];
     [].forEach.call(cookies_object, (item) => {
-      let is_checked = document.getElementById('cookiemunch_' + item.id).checked;
-      match_map.push(is_checked);
+      let el = document.getElementById('cookiemunch_' + item.id);
+      if (el) {
+        match_map.push(el.checked);
+      }
     });
     for (let i = 0; i < match_map.length; i++) {
       if (match_map.length !== state_map.length) return false;
@@ -392,11 +427,35 @@ const cookiemunch_function = (options_passed, block_functions) => {
     [].forEach.call(cookiemunch_wrapper_chev, (el) => {
       el.removeAttribute("data-class-chev-seleted");
     });
+
+    get_grouping();
     if (toggle_view_el) {
       if (window.getComputedStyle(toggle_view_el).display === 'none') {
         slideDown_options(toggle_view_el, duration);
         document.querySelector('.cookiemunch_wrapper_dropdown.' + uniqueClass + ' .cookiemunch_wrapper_chev').setAttribute("data-class-chev-seleted", true);
-        if (uniqueClass === 'cookiemunch_wrapper_optional') {
+
+        if (has_grouping) {
+          if (secectedEl && selectEl) {
+            secectedEl.setAttribute('style', 'display: block;');
+            selectEl.setAttribute('style', 'display: none;');
+          }
+        } else {
+          if (uniqueClass !== 'cookiemunch_wrapper_required') {
+            if (secectedEl && selectEl) {
+              secectedEl.setAttribute('style', 'display: block;');
+              selectEl.setAttribute('style', 'display: none;');
+            }
+          } else {
+            if (secectedEl && selectEl) {
+              secectedEl.setAttribute('style', 'display: none;');
+              selectEl.setAttribute('style', 'display: block;');
+            }
+          }
+        }
+      } else {
+        slideUp_options(toggle_view_el, duration);
+        document.querySelector('.cookiemunch_wrapper_dropdown.' + uniqueClass + ' .cookiemunch_wrapper_chev').removeAttribute("data-class-chev-seleted");
+        if (has_grouping) {
           if (secectedEl && selectEl) {
             secectedEl.setAttribute('style', 'display: block;');
             selectEl.setAttribute('style', 'display: none;');
@@ -407,13 +466,6 @@ const cookiemunch_function = (options_passed, block_functions) => {
             selectEl.setAttribute('style', 'display: block;');
           }
         }
-      } else {
-        slideUp_options(toggle_view_el, duration);
-        document.querySelector('.cookiemunch_wrapper_dropdown.' + uniqueClass + ' .cookiemunch_wrapper_chev').removeAttribute("data-class-chev-seleted");
-        if (secectedEl && selectEl) {
-          secectedEl.setAttribute('style', 'display: none;');
-          selectEl.setAttribute('style', 'display: block;');
-        }
       }
     }
     if (close_toggle_view_el) {
@@ -423,57 +475,152 @@ const cookiemunch_function = (options_passed, block_functions) => {
     }
   };
 
+
+
+  const get_grouping = () => {
+    if (!cookies_object.length) {
+      return [];
+    }
+    groups = [];
+    for (let i = 0; i < cookies_object.length; i++) {
+      if (cookies_object[i].group) {
+        if (groups.indexOf(cookies_object[i].group) === -1) {
+          groups.push(cookies_object[i].group);
+          has_grouping = true;
+        }
+      } else {
+        if (groups.indexOf('Optional') === -1) {
+          groups.push('Optional');
+        }
+      }
+    }
+    return groups;
+  };
+
+
+
   const create_html_hot_cookie_options_fn = () => {
     let html = ``;
+    let grouping = get_grouping();
+
+    for (let group = 0; group < grouping.length; group++) {
+
+      if (grouping[group] !== 'Optional') {
+        if (cookies_object.length && required_cookies.length) {
+          let this_id = `${grouping[group].replaceAll(/\s/g,'_')}_group`.toLowerCase();
+          html += /*html*/ `
+          <div 
+            class="cookiemunch_wrapper_dropdown cookiemunch_wrapper_${this_id}"
+            onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_${this_id}')"
+            >
+            <span>${grouping[group]}</span><span class="cookiemunch_wrapper_chev"></span>
+          </div>
+          <div class="cookiemunch_wrapper cookiemunch_wrapper_${this_id}" style="display: none;">
+          `;
+        } else {
+          html += /*html*/ `
+          <div class="cookiemunch_wrapper cookiemunch_wrapper_${grouping[group]}" data-fade-switch="true">`;
+        }
+      }
+      if (cookies_object.length > 1) {
+        for (let i = 0; i < cookies_object.length; i++) {
+          if (cookies_object[i].group === grouping[group]) {
+            html += /*html*/ `
+            <div class="cookiemunch_container">
+              <div class="cookiemunch_switch_title_container">
+                <h2>${cookies_object[i].name}</h2>
+                <label class="cookiemunch_switch">
+                  <input id="cookiemunch_${cookies_object[i].id}" type="checkbox" value="cookiemunch_${cookies_object[i].id}">
+                  <span class="cookiemunch_slider cookiemunch_round"></span>
+                </label>
+              </div>
+              <p>${cookies_object[i].used_for}</p>
+              <a rel="noreferrer" target="_blank" href="${cookies_object[i].url}">${cookies_object[i].url_text}</a>
+            </div>`;
+          }
+        }
+      } else if (cookies_object.length === 1) {
+        if (cookies_object[0].group === grouping[group]) {
+          html += /*html*/ `
+          <div class="cookiemunch_container">
+            <div class="cookiemunch_switch_title_container"><h2>${cookies_object[0].name}</h2>
+              <label style="pointer-events: none;" class="cookiemunch_switch">
+                <input id="cookiemunch_${cookies_object[0].id}" type="checkbox" value="cookiemunch_${cookies_object[0].id}">
+                <span class="checkmark">
+                  <div class="checkmark_stem"></div>
+                  <div class="checkmark_kick"></div>
+                </span>
+                <span class="close"></span>
+              </label>
+            </div>
+            <p>${cookies_object[0].used_for}</p>
+            <a rel="noreferrer" target="_blank" href="${cookies_object[0].url}">${cookies_object[0].url_text}</a>
+          </div>`;
+        }
+      }
+
+      if (grouping[group] !== 'Optional') {
+        if (cookies_object.length && required_cookies.length) {
+          html += /*html*/ `</div>`;
+        }
+      }
+
+    } // for end
 
     // optional cookies section
-    if (cookies_object.length && required_cookies.length) {
-      html += /*html*/ `
-      <div 
-        class="cookiemunch_wrapper_dropdown cookiemunch_wrapper_optional" 
-        onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_optional')"
-        >
-        <span>${plugin_settings.cookie_optional}</span><span class="cookiemunch_wrapper_chev"></span>
-      </div>
-      <div class="cookiemunch_wrapper cookiemunch_wrapper_optional" style="display: none;">
-      `;
-    } else {
-      html += /*html*/ `
-      <div class="cookiemunch_wrapper cookiemunch_wrapper_optional" data-fade-switch="true">`;
-    }
-    if (cookies_object.length > 1) {
-      for (let i = 0; i < cookies_object.length; i++) {
+    if (grouping.indexOf("Optional") > -1) {
+      if (cookies_object.length && required_cookies.length) {
         html += /*html*/ `
-        <div class="cookiemunch_container">
-          <div class="cookiemunch_switch_title_container">
-            <h2>${cookies_object[i].name}</h2>
-            <label class="cookiemunch_switch">
-              <input id="cookiemunch_${cookies_object[i].id}" type="checkbox" value="cookiemunch_${cookies_object[i].id}">
-              <span class="cookiemunch_slider cookiemunch_round"></span>
-            </label>
-          </div>
-          <p>${cookies_object[i].used_for}</p>
-          <a rel="noreferrer" target="_blank" href="${cookies_object[i].url}">${cookies_object[i].url_text}</a>
-        </div>`;
-      }
-    } else if (cookies_object.length === 1) {
-      html += /*html*/ `
-      <div class="cookiemunch_container">
-        <div class="cookiemunch_switch_title_container"><h2>${cookies_object[0].name}</h2>
-          <label style="pointer-events: none;" class="cookiemunch_switch">
-            <input id="cookiemunch_${cookies_object[0].id}" type="checkbox" value="cookiemunch_${cookies_object[0].id}">
-            <span class="checkmark">
-              <div class="checkmark_stem"></div>
-              <div class="checkmark_kick"></div>
-            </span>
-            <span class="close"></span>
-          </label>
+        <div 
+          class="cookiemunch_wrapper_dropdown cookiemunch_wrapper_optional" 
+          onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_optional')"
+          >
+          <span>${plugin_settings.cookie_optional}</span><span class="cookiemunch_wrapper_chev"></span>
         </div>
-        <p>${cookies_object[0].used_for}</p>
-        <a rel="noreferrer" target="_blank" href="${cookies_object[0].url}">${cookies_object[0].url_text}</a>
-      </div>`;
+        <div class="cookiemunch_wrapper cookiemunch_wrapper_optional" style="display: none;">
+        `;
+      } else {
+        html += /*html*/ `
+        <div class="cookiemunch_wrapper cookiemunch_wrapper_optional" data-fade-switch="true">`;
+      }
+      if (cookies_object.length > 1 && grouping.indexOf("Optional") > -1) {
+        for (let i = 0; i < cookies_object.length; i++) {
+          if (!cookies_object[i].group) {
+            html += /*html*/ `
+            <div class="cookiemunch_container">
+              <div class="cookiemunch_switch_title_container">
+                <h2>${cookies_object[i].name}</h2>
+                <label class="cookiemunch_switch">
+                  <input id="cookiemunch_${cookies_object[i].id}" type="checkbox" value="cookiemunch_${cookies_object[i].id}">
+                  <span class="cookiemunch_slider cookiemunch_round"></span>
+                </label>
+              </div>
+              <p>${cookies_object[i].used_for}</p>
+              <a rel="noreferrer" target="_blank" href="${cookies_object[i].url}">${cookies_object[i].url_text}</a>
+            </div>`;
+          }
+        }
+      } else if (cookies_object.length === 1 && grouping.indexOf("Optional") > -1) {
+        if (!cookies_object[0].group) {
+          html += /*html*/ `
+          <div class="cookiemunch_container">
+            <div class="cookiemunch_switch_title_container"><h2>${cookies_object[0].name}</h2>
+              <label style="pointer-events: none;" class="cookiemunch_switch">
+                <input id="cookiemunch_${cookies_object[0].id}" type="checkbox" value="cookiemunch_${cookies_object[0].id}">
+                <span class="checkmark">
+                  <div class="checkmark_stem"></div>
+                  <div class="checkmark_kick"></div>
+                </span>
+                <span class="close"></span>
+              </label>
+            </div>
+            <p>${cookies_object[0].used_for}</p>
+            <a rel="noreferrer" target="_blank" href="${cookies_object[0].url}">${cookies_object[0].url_text}</a>
+          </div>`;
+        }
+      }
+      html += /*html*/ `</div>`;
     }
-    html += /*html*/ `</div>`;
 
     // required cookies section
     if (cookies_object.length && required_cookies.length) {
@@ -522,10 +669,10 @@ const cookiemunch_function = (options_passed, block_functions) => {
         <button onclick="cookiemunch_decline()" id="cookiemunch_decline">
           ${plugin_settings.cookie_button_required}
         </button>
-        <button onclick="cookiemunch_accept_selected()" id="cookiemunch_accept_selected" style="display: none;">
+        <button onclick="cookiemunch_accept_selected()" id="cookiemunch_accept_selected" ${has_grouping ? '' : 'style="display: none;"'}>
           ${plugin_settings.cookie_button_selected}
         </button>
-        <button onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_optional')" id="cookiemunch_accept_select">
+        <button onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_optional')" id="cookiemunch_accept_select"  ${has_grouping ? 'style="display: none;"' : ''}>
           ${plugin_settings.cookie_button_select}
         </button>
         `;
@@ -576,8 +723,10 @@ const cookiemunch_function = (options_passed, block_functions) => {
   };
 
   const create_cookiemunch = () => {
+
     let create_html_hot_cookie_options = document.createElement('div');
     let cookie_munch_el = document.createElement('div');
+    let cookie_munch_el_required = document.createElement('div');
 
     create_html_hot_cookie_options.setAttribute("class", "cookiemunch_toggle_view");
     create_html_hot_cookie_options.innerHTML = create_html_hot_cookie_options_fn();
@@ -601,8 +750,17 @@ const cookiemunch_function = (options_passed, block_functions) => {
     `;
     cookie_munch_el.innerHTML = html;
 
-    cookie_munch_el.appendChild(create_html_hot_cookie_options);
-    document.body.appendChild(cookie_munch_el);
+    // required blocker
+    cookie_munch_el_required.setAttribute("id", "cookiemunch_cookies_required");
+
+    if (plugin_settings.required && !checkCookie('cookiemunch_option_selected')) {
+      cookie_munch_el.appendChild(create_html_hot_cookie_options);
+      cookie_munch_el_required.appendChild(cookie_munch_el);
+      document.body.appendChild(cookie_munch_el_required);
+    } else {
+      cookie_munch_el.appendChild(create_html_hot_cookie_options);
+      document.body.appendChild(cookie_munch_el);
+    }
 
     toggle_view_el = document.querySelector(".cookiemunch_toggle_view");
     document.querySelector('.cookie_munch_title_wrap').addEventListener("click", () => {
@@ -621,6 +779,9 @@ const cookiemunch_function = (options_passed, block_functions) => {
     for (let i = 0; i < cookies_object.length; i++) {
       let check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
       let el = document.getElementById(check_this_cookie);
+      if (!el) {
+        return false;
+      }
       if (checkCookie(check_this_cookie)) {
         el.checked = true;
       } else {
@@ -662,7 +823,12 @@ const cookiemunch_function = (options_passed, block_functions) => {
 
   const load_dropdown = () => {
     if (!plugin_settings.start_dropdown_closed) {
-      cookiemunch_dropdown('cookiemunch_wrapper', 'cookiemunch_wrapper_optional');
+      let first_group = get_grouping();
+      if (!has_grouping) {
+        cookiemunch_dropdown('cookiemunch_wrapper', 'cookiemunch_wrapper_optional');
+      } else {
+        cookiemunch_dropdown('cookiemunch_wrapper', `cookiemunch_wrapper_${first_group[0].replaceAll(/\s/g,'_')}_group`.toLowerCase());
+      }
     }
   };
 
