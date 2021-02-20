@@ -11,6 +11,8 @@ $btn-bg-accept_all: mix($main-body-bg, $main-body-text, 95%);
 $switch-on-bg: mix($main-body-bg, $main-body-text, 20%); 
 $mix-btn-bg-with: $main-body-text;
 $mix-btn-bg-with-percent: 95%;
+$required-bg-color: #000;
+$required-bg: transparentize($required-bg-color, 0.5);
 
 // override theme:
 // $main-body-bg: #000;
