@@ -85,6 +85,9 @@ function start_the_build() {
   console.log(`Your ${build} Cookiemunch prodution ready files are now baked in ./dist, they smell delicious!\n`);
   console.log(`To see how they look:\n`);
   console.log(`npm run dist\n`);
+
+  // to enable the following section create a .env with NPM_PACKAGE=true
+
   if (process.env.NPM_PACKAGE === 'true') {
     if (build === 'default') {
       console.log("NPM package can now be tested and published.\n");

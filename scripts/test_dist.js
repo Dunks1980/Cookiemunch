@@ -6,9 +6,9 @@ const custom_file = './dist/cookiemunch_custom.min.css';
 
 try {
   if (fs.existsSync(default_file) && !fs.existsSync(custom_file)) {
-    serve('default', 'index.html', 8234);
+    serve('default', 'serve/dist_default.html', 8234); 
   } else if (!fs.existsSync(default_file) && fs.existsSync(custom_file)) {
-    serve('custom', 'index_custom.html', 8234);
+    serve('custom', 'serve/dist_custom.html', 8234);
   } else {
     console.log("No dist found\n");
     console.log('Try "npm run build"\n');
