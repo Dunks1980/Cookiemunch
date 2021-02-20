@@ -618,6 +618,7 @@ input:checked+.cookiemunch_slider:before {
   background: $required-bg;
   user-select: none;
   transition: 0.3s ease-in-out;
+  z-index: 9999999999999999999;
 }
 
 #cookiemunch_cookies_required.accepted {
