@@ -846,9 +846,9 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
       load_dropdown();
     }
     if (typeof block_functions === "function") {
-      return block_functions();
+      block_functions();
     } else if (typeof callback === "function") {
-      return callback();
+      callback();
     }
   };
 
