@@ -51,21 +51,25 @@ function deleteFolderRecursive(path) {
 
 // run the parcel scripts
 let parcel_scripts = '';
+
 function generate_parcel_scripts() {
+  let src;
   if (build === 'default') {
+    src = 'src_default';
     parcel_scripts =
-      'parcel build src/js/cookiemunch.js --global window -o /cookiemunch.min.js --no-content-hash --no-source-maps --experimental-scope-hoisting && ' +
-      'parcel build src/images/cookiemunch.svg -o /cookiemunch.svg --no-content-hash --no-source-maps && ' +
-      'parcel build src/images/cookiemunch_flat_dark.svg -o /cookiemunch_flat_dark.svg --no-content-hash --no-source-maps && ' +
-      'parcel build src/images/cookiemunch_flat_light.svg -o /cookiemunch_flat_light.svg --no-content-hash --no-source-maps && ' +
-      'parcel build src/scss/cookiemunch.scss -o /cookiemunch.min.css --no-content-hash --no-source-maps && ' +
-      'parcel build src/scss/cookiemunch_flat_dark.scss -o /cookiemunch_flat_dark.min.css --no-content-hash --no-source-maps && ' +
-      'parcel build src/scss/cookiemunch_flat_light.scss -o /cookiemunch_flat_light.min.css --no-content-hash --no-source-maps';
+      'parcel build '+src+'/js/cookiemunch.js --global window -o /cookiemunch.min.js --no-content-hash --no-source-maps --experimental-scope-hoisting && ' +
+      'parcel build '+src+'/images/cookiemunch.svg -o /cookiemunch.svg --no-content-hash --no-source-maps && ' +
+      'parcel build '+src+'/images/cookiemunch_flat_dark.svg -o /cookiemunch_flat_dark.svg --no-content-hash --no-source-maps && ' +
+      'parcel build '+src+'/images/cookiemunch_flat_light.svg -o /cookiemunch_flat_light.svg --no-content-hash --no-source-maps && ' +
+      'parcel build '+src+'/scss/cookiemunch.scss -o /cookiemunch.min.css --no-content-hash --no-source-maps && ' +
+      'parcel build '+src+'/scss/cookiemunch_flat_dark.scss -o /cookiemunch_flat_dark.min.css --no-content-hash --no-source-maps && ' +
+      'parcel build '+src+'/scss/cookiemunch_flat_light.scss -o /cookiemunch_flat_light.min.css --no-content-hash --no-source-maps';
   } else {
+    src = 'src_custom';
     parcel_scripts =
-      'parcel build src/js/cookiemunch_custom.js --global window -o /cookiemunch.min.js --no-content-hash --no-source-maps --experimental-scope-hoisting && ' +
-      'parcel build src/images/cookiemunch_custom.svg -o /cookiemunch_custom.svg --no-content-hash --no-source-maps && ' +
-      'parcel build src/scss/cookiemunch_custom.scss -o /cookiemunch_custom.min.css --no-content-hash --no-source-maps';
+      'parcel build '+src+'/js/cookiemunch_custom.js --global window -o /cookiemunch.min.js --no-content-hash --no-source-maps --experimental-scope-hoisting && ' +
+      'parcel build '+src+'/images/cookiemunch_custom.svg -o /cookiemunch_custom.svg --no-content-hash --no-source-maps && ' +
+      'parcel build '+src+'/scss/cookiemunch_custom.scss -o /cookiemunch_custom.min.css --no-content-hash --no-source-maps';
   }
 }
 

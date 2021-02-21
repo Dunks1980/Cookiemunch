@@ -21,27 +21,29 @@ npm install
 ```
 <br />
 
-## Development:
+## Usage:
 <br />
 
 To start a local server with live-reload and make changes to the custom theme:
 ```
 npm run custom
 ```
-These are the custom theme files:
+
+Changes to the cookies objects and settings can be made in: serve/src_custom.html<br>
+These are the custom theme files located in src_custom/:
 
 ```
-src/js/cookiemunch_custom.js
+src_custom/js/cookiemunch_custom.js
 
-src/scss/cookiemunch_custom.scss
+src_custom/scss/cookiemunch_custom.scss
 
-src/scss/cookiemunch_common_custom.scss
+src_custom/scss/cookiemunch_common_custom.scss
 
-src/images/cookiemunch_custom.svg
+src_custom/images/cookiemunch_custom.svg
 ```
 <br />
 
-From line 15 of src/scss/cookiemunch_custom.scss, these are the main colour controls. Making a change to just $main-body-bg and $main-body-text can drastically change its appearance.
+From line 15 of src_custom/scss/cookiemunch_custom.scss, these are the main colour controls. Making a change to just $main-body-bg and $main-body-text can drastically change its appearance.
 ```scss
 // override theme:
 $main-body-bg: #1b1d35;
@@ -57,11 +59,11 @@ $switch-on-bg: $btn-bg-accept_selected;
 $mix-btn-bg-with: $main-body-text;
 $mix-btn-bg-with-percent: 65%;
 ```
-All colour variables are in the file src/scss/cookiemunch_custom.scss but if you need further changes, they can be made in src/scss/cookiemunch_common_custom.scss.<br />
+All colour variables are in the file src_custom/scss/cookiemunch_custom.scss but if you need further changes, they can be made in src_custom/scss/cookiemunch_common_custom.scss.<br />
 
 For the cookie image 3 options are included, If you choose to use your own design its ideal ratio is square 1:1, any type of image can be used but for best results .svg or .png with transparency are recommended.<br />
 
-For any js customizations the file is src/js/cookiemunch_custom.js, if you add anything cool please send me a pull request and I will consider adding it to the main branch.
+For any js customizations the file is src_custom/js/cookiemunch_custom.js, if you add anything cool please send me a pull request and I will consider adding it to the main branch.
 
 <br />
 
