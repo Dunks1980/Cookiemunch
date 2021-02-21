@@ -1,4 +1,4 @@
-const cookiemunch_function = (options_passed, block_functions) => {
+const cookiemunch_function = (options_passed, block_functions, callback) => {
 
   let cookies_object,
     required_cookies,
@@ -800,7 +800,7 @@ const cookiemunch_function = (options_passed, block_functions) => {
       if (plugin_settings.hide_icon) {
         document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
       }
-      if (!block_functions) {
+      if (typeof block_functions === 'function' || block_functions === false) {
         for (i = 0; i < cookies_object.length; i++) {
           check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
           if (checkCookie(check_this_cookie)) {
@@ -844,6 +844,11 @@ const cookiemunch_function = (options_passed, block_functions) => {
     load_scripts_if_cookies();
     if (cookies_object.length && required_cookies.length) {
       load_dropdown();
+    }
+    if (typeof block_functions === "function") {
+      return block_functions();
+    } else if (typeof callback === "function") {
+      return callback();
     }
   };
 
