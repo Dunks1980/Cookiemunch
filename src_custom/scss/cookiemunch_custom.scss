@@ -15,15 +15,15 @@ $required-bg-color: #000;
 $required-bg: transparentize($required-bg-color, 0.5);
 
 // override theme:
-$main-body-bg: #1b1d35;
-$main-body-text: rgb(184, 178, 235);
+$main-body-bg: #ebeadd;
+$main-body-text: #1c2b48;
 $main-body-border-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.4);
 $btn-border: 0px solid #fff;
 $btn-text: #fff;
-$btn-bg-decline: rgb(197, 49, 49);
+$btn-bg-decline: #a33036;
 $btn-bg-accept_select: #4b4b4b;
-$btn-bg-accept_selected: rgb(49, 91, 197);
-$btn-bg-accept_all: rgb(36, 146, 64);
+$btn-bg-accept_selected: #1c2b48;
+$btn-bg-accept_all: #16223a;
 $switch-on-bg: $btn-bg-accept_selected; 
 $mix-btn-bg-with: $main-body-text;
 $mix-btn-bg-with-percent: 65%;
