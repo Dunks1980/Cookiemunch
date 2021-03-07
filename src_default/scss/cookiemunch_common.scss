@@ -269,6 +269,9 @@
   height: 24px;
   opacity: 0;
   transition: 0.3s ease-in-out;
+  border: $switch-bg-border;
+  border-radius: 34px;
+  box-sizing: content-box;
 }
 [data-fade-switch="true"] .cookiemunch_switch {
   opacity: 1;
@@ -300,8 +303,37 @@
   right: 0;
   bottom: 0;
   background-color: $switch-off-bg;
+  &.cookiemunch_switch_icons {
+    background-color: $switch-with-icon-off-bg;
+  }
   -webkit-transition: .3s;
   transition: .3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  svg:nth-child(1) {
+    // ✔
+    position: relative;
+    left: -26px; 
+    top: -1px;  
+    fill: $switch-icon-on !important; 
+    stroke: $switch-icon-on;
+    stroke-width: 2px;
+  }
+  svg:nth-child(2) {
+    // ×
+    top: 0px;
+    left: -1px; 
+    position: relative;  
+    fill: $switch-icon-off !important; 
+    stroke: $switch-icon-off;
+    stroke-width: 2px;
+  }
+  svg {
+    transition: .3s;
+  }
+
 }
 
 .cookiemunch_slider:before {
@@ -318,6 +350,14 @@
 
 input:checked+.cookiemunch_slider {
   background-color: $switch-on-bg;
+  &.cookiemunch_switch_icons {
+    background-color: $switch-with-icon-on-bg;
+  }
+  > svg {
+    transform: translateX(26px);
+  }
+  
+  
 }
 
 input:focus+.cookiemunch_slider {

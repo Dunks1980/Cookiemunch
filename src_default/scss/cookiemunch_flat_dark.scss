@@ -38,7 +38,12 @@ $panel-dropdown-line: 1px solid mix($main-body-bg, $main-body-text, 75%);
 
 // switch 
 $switch-off-bg: mix($main-body-bg, $main-body-text, 75%);
-$switch-fg: mix($main-body-bg, $main-body-text, 100%);
+$switch-fg: mix($main-body-bg, $main-body-text, 0%);
+$switch-with-icon-on-bg: mix($main-body-bg, $main-body-text, 100%);
+$switch-with-icon-off-bg: mix($main-body-bg, $main-body-text, 100%);
+$switch-icon-on: rgb(36, 146, 64);
+$switch-icon-off: rgb(197, 49, 49);
+$switch-bg-border: 1px solid mix($main-body-bg, $main-body-text, 75%);
 
 // accepted/declined
 $accepted-tick: rgb(36, 146, 64);
