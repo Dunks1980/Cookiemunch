@@ -1,5 +1,9 @@
 const cookiemunch_function = (options_passed, block_functions, callback) => {
 
+  if (typeof block_functions === 'undefined' || typeof block_functions === 'function') {
+    block_functions = false;
+  }
+
   let cookies_object,
     required_cookies,
     plugin_settings,
@@ -7,6 +11,8 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     duration = 300,
     has_grouping,
     state_map = [];
+
+  console.log(block_functions);
 
   const cookiemunch_set_settings = () => {
     if (!options_passed.settings) {
