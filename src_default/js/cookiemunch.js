@@ -1,9 +1,5 @@
 const cookiemunch_function = (options_passed, block_functions, callback) => {
 
-  if (typeof block_functions === 'undefined' || typeof block_functions === 'function') {
-    block_functions = false;
-  }
-
   let cookies_object,
     required_cookies,
     plugin_settings,
@@ -811,7 +807,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
       if (plugin_settings.hide_icon) {
         document.getElementById("cookie_munch_element").setAttribute("class", "closed-fully");
       }
-      if (typeof block_functions === 'function' || block_functions === false) {
+      if (typeof block_functions === 'function' || block_functions === false || block_functions === undefined) {
         for (i = 0; i < cookies_object.length; i++) {
           check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
           if (checkCookie(check_this_cookie)) {
