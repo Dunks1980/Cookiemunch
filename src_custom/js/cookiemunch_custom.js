@@ -12,8 +12,6 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     has_grouping,
     state_map = [];
 
-  console.log(block_functions);
-
   const cookiemunch_set_settings = () => {
     if (!options_passed.settings) {
       options_passed.settings = {};
