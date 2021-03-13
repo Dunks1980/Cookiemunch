@@ -409,7 +409,7 @@ input:checked+.cookiemunch_slider:before {
 }
 
 #cookie_munch_element input:checked+.checkmark {
-  display: inline-block;
+  display: block;
 }
 
 #cookie_munch_element .close {
@@ -445,7 +445,7 @@ input:checked+.cookiemunch_slider:before {
 }
 
 #cookie_munch_element input:not(:checked)+.checkmark+.close {
-  display: inline-block;
+  display: block;
 }
 
 #cookie_munch_element .close_panel {

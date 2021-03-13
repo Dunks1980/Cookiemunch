@@ -1,6 +1,6 @@
 {
   "name": "cookiemunch",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
   "scripts": {
     "custom": "parcel serve/src_custom.html",
