@@ -137,7 +137,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
           document.body.appendChild(cookie_munch_element);
           let cookiemunch_cookies_required = document.getElementById('cookiemunch_cookies_required');
           if (cookiemunch_cookies_required) {
-            cookiemunch_cookies_required.remove();
+            cookiemunch_cookies_required.parentNode.removeChild(cookiemunch_cookies_required);
           }
         }
       }, 350);
@@ -842,8 +842,9 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
   };
 
   window.cookiemunch_load_plugin = () => {
-    if (document.getElementById("cookie_munch_element")) {
-      document.getElementById("cookie_munch_element").remove();
+    let cookie_munch_element = document.getElementById("cookie_munch_element");
+    if (cookie_munch_element) {
+      cookie_munch_element.parentElement.removeChild(cookie_munch_element);
     }
     cookiemunch_set_settings();
     create_cookiemunch();
