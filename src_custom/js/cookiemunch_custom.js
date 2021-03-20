@@ -6,7 +6,8 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     toggle_view_el,
     duration = 300,
     has_grouping,
-    state_map = [];
+    state_map = [],
+    cookie_expire = "=; expires=Thu, 01-Jan-1970 00:00:01 GMT;";
 
   const cookiemunch_set_settings = () => {
     if (!options_passed.settings) {
@@ -21,6 +22,8 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
       first_visit_checked: options_passed.settings.first_visit_checked || false,
       start_dropdown_closed: options_passed.settings.start_dropdown_closed || false,
       check_switch_icons: options_passed.settings.check_switch_icons || false,
+      cookies_duration: options_passed.settings.cookies_duration || 365,
+      cookies_secure: options_passed.settings.cookies_secure || false,
       cookie_image: options_passed.settings.cookie_image || 'https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg',
       cookie_title: options_passed.settings.cookie_title || 'Cookies settings',
       cookie_optional: options_passed.settings.cookie_optional || 'Optional',
@@ -38,11 +41,12 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     };
   };
 
-  const setCookie = (cname, cvalue, exdays) => {
+  const setCookie = (cname, cvalue, exdays, secure) => {
     let d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 500));
     let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    secure ? isSecure = 'secure' : isSecure = '';
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;" + isSecure;
   };
 
   const getCookie = (cname) => {
@@ -71,7 +75,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
   };
 
   const deleteCookie = (val) => {
-    document.cookie = val + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = val + cookie_expire + " path=/;";
   };
 
   const deleteAllCookies = () => {
@@ -89,7 +93,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
         let d = window.location.hostname.split(".");
         while (d.length > 0) {
           let cookieBase = encodeURIComponent(cookies[c].split(";")[0].split("=")[0]) +
-            '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' + d.join('.') + ' ;path=';
+            cookie_expire + ' domain=' + d.join('.') + ' ;path=';
           let p = location.pathname.split('/');
           document.cookie = cookieBase + '/';
           while (p.length > 0) {
@@ -180,7 +184,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
       let check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
       let el = document.getElementById(check_this_cookie);
       if (el && el.checked) {
-        setCookie(check_this_cookie, true, 365);
+        setCookie(check_this_cookie, true, plugin_settings.cookies_duration, plugin_settings.cookies_secure);
         if (!plugin_settings.reload) {
           cookies_object[i].accepted_function();
         }
@@ -192,7 +196,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
       }
     }
     slideUp(toggle_view_el, duration);
-    setCookie('cookiemunch_option_selected', true, 365);
+    setCookie('cookiemunch_option_selected', true, plugin_settings.cookies_duration, plugin_settings.cookies_secure);
     if (plugin_settings.reload) {
       setTimeout(() => {
         location.reload();
