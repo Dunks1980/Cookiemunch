@@ -43,7 +43,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
 
   const setCookie = (cname, cvalue, exdays, secure) => {
     let d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 500));
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
     secure ? isSecure = 'secure' : isSecure = '';
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;" + isSecure;
