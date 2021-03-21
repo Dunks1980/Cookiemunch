@@ -536,7 +536,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
               <div class="cookiemunch_switch_title_container">
                 <h2>${cookies_object[i].name}</h2>
                 <label class="cookiemunch_switch">
-                  <input id="cookiemunch_${cookies_object[i].id}" type="checkbox" value="cookiemunch_${cookies_object[i].id}">
+                  <input id="cookiemunch_${cookies_object[i].id}" type="checkbox" value="cookiemunch_${cookies_object[i].id}" aria-label="check box for ${cookies_object[i].name} cookies">
                   <span class="cookiemunch_slider cookiemunch_round${plugin_settings.check_switch_icons ? ' cookiemunch_switch_icons' : ''}" >
                     ${plugin_settings.check_switch_icons ? /*html*/`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" style="fill:#4ADE80;transform:;-ms-filter:"><path d="M10 15.586L6.707 12.293 5.293 13.707 10 18.414 19.707 8.707 18.293 7.293z"></path></svg>
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" style="fill:#F87171;transform:;-ms-filter:"><path d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z"></path></svg>` : ``}
@@ -554,7 +554,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
           <div class="cookiemunch_container">
             <div class="cookiemunch_switch_title_container"><h2>${cookies_object[0].name}</h2>
               <label style="pointer-events: none; border-width: 0px;" class="cookiemunch_switch">
-                <input id="cookiemunch_${cookies_object[0].id}" type="checkbox" value="cookiemunch_${cookies_object[0].id}">
+                <input id="cookiemunch_${cookies_object[0].id}" type="checkbox" value="cookiemunch_${cookies_object[0].id}" aria-label="check box for ${cookies_object[0].name} cookies">
                 <span class="checkmark">
                   <div class="checkmark_stem"></div>
                   <div class="checkmark_kick"></div>
@@ -600,7 +600,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
               <div class="cookiemunch_switch_title_container">
                 <h2>${cookies_object[i].name}</h2>
                 <label class="cookiemunch_switch">
-                  <input id="cookiemunch_${cookies_object[i].id}" type="checkbox" value="cookiemunch_${cookies_object[i].id}">
+                  <input id="cookiemunch_${cookies_object[i].id}" type="checkbox" value="cookiemunch_${cookies_object[i].id}" aria-label="check box for ${cookies_object[i].name} cookies">
                   <span class="cookiemunch_slider cookiemunch_round${plugin_settings.check_switch_icons ? ' cookiemunch_switch_icons' : ''}">
                     ${plugin_settings.check_switch_icons ? /*html*/`<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" style="fill:#4ADE80;transform:;-ms-filter:"><path d="M10 15.586L6.707 12.293 5.293 13.707 10 18.414 19.707 8.707 18.293 7.293z"></path></svg>
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" style="fill:#F87171;transform:;-ms-filter:"><path d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z"></path></svg>` : ``}
@@ -618,7 +618,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
           <div class="cookiemunch_container">
             <div class="cookiemunch_switch_title_container"><h2>${cookies_object[0].name}</h2>
               <label style="pointer-events: none; border-width: 0px;" class="cookiemunch_switch">
-                <input id="cookiemunch_${cookies_object[0].id}" type="checkbox" value="cookiemunch_${cookies_object[0].id}">
+                <input id="cookiemunch_${cookies_object[0].id}" type="checkbox" value="cookiemunch_${cookies_object[0].id}" aria-label="check box for ${cookies_object[0].name} cookies">
                 <span class="checkmark">
                   <div class="checkmark_stem"></div>
                   <div class="checkmark_kick"></div>
