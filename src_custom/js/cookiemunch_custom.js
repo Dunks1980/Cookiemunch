@@ -697,7 +697,6 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
           ${plugin_settings.cookie_button_selected}
         </button>
         <button 
-         
           data-cookiemunchdropdown="cookiemunch_wrapper_optional"
           id="cookiemunch_accept_select"  
           ${has_grouping ? 'style="display: none;"' : ''}>
@@ -811,29 +810,37 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     let cookiemunch_dropdown_btns = document.querySelectorAll('[data-cookiemunchdropdown]');
     [].forEach.call(cookiemunch_dropdown_btns, (cookiemunch_dropdown) => {
       cookiemunch_dropdown.onclick = () => {
-        let dropdown = cookiemunch_dropdown.getAttribute('data-cookiemunchdropdown')
+        let dropdown = cookiemunch_dropdown.getAttribute('data-cookiemunchdropdown');
         window.cookiemunch_dropdown(dropdown);
       }
     });
 
     let cookiemunch_decline_btn = document.getElementById('cookiemunch_decline');
-    cookiemunch_decline_btn.onclick = () => {
-      window.cookiemunch_decline();
+    if (cookiemunch_decline_btn) {
+      cookiemunch_decline_btn.onclick = () => {
+        window.cookiemunch_decline();
+      }
     }
 
     let cookiemunch_accept_selected_btn = document.getElementById('cookiemunch_accept_selected');
-    cookiemunch_accept_selected_btn.onclick = () => {
-      window.cookiemunch_accept_selected();
+    if (cookiemunch_accept_selected_btn) {
+      cookiemunch_accept_selected_btn.onclick = () => {
+        window.cookiemunch_accept_selected();
+      }
     }
 
     let close_panel_btn = document.getElementById('close_panel_btn');
-    close_panel_btn.onclick = () => {
-      window.cookiemunch_accept_selected();
+    if (close_panel_btn) {
+      close_panel_btn.onclick = () => {
+        window.cookiemunch_accept_selected();
+      }
     }
 
     let cookiemunch_accept_all_btn = document.getElementById('cookiemunch_accept_all');
-    cookiemunch_accept_all_btn.onclick = () => {
-      window.cookiemunch_accept_all();
+    if (cookiemunch_accept_all_btn) {
+      cookiemunch_accept_all_btn.onclick = () => {
+        window.cookiemunch_accept_all();
+      }
     }
 
     setTimeout(() => {
