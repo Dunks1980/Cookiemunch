@@ -7,7 +7,8 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     duration = 300,
     has_grouping,
     state_map = [],
-    cookie_expire = "=; expires=Thu, 01-Jan-1970 00:00:01 GMT;";
+    cookie_expire = "=; expires=Thu, 01-Jan-1970 00:00:01 GMT;",
+    classOnAll = 'cookiemunch_wrapper';
 
   const cookiemunch_set_settings = () => {
     if (!options_passed.settings) {
@@ -421,7 +422,11 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     }, duration);
   };
 
-  window.cookiemunch_dropdown = (classOnAll, uniqueClass) => {
+
+
+
+
+  window.cookiemunch_dropdown = (uniqueClass) => {
     if (!document.getElementById("cookie_munch_element")) {
       return false;
     }
@@ -503,7 +508,14 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     return groups;
   };
 
-
+  // create html --------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
 
   const create_html_hot_cookie_options_fn = () => {
     let html = ``;
@@ -517,7 +529,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
           html += /*html*/ `
           <div 
             class="cookiemunch_wrapper_dropdown cookiemunch_wrapper_${this_id}"
-            onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_${this_id}')"
+            data-cookiemunchdropdown="cookiemunch_wrapper_${this_id}"
             >
             <span>${grouping[group]}</span><span class="cookiemunch_wrapper_chev"></span>
           </div>
@@ -582,7 +594,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
         html += /*html*/ `
         <div 
           class="cookiemunch_wrapper_dropdown cookiemunch_wrapper_optional" 
-          onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_optional')"
+          data-cookiemunchdropdown="cookiemunch_wrapper_optional"
           >
           <span>${plugin_settings.cookie_optional}</span><span class="cookiemunch_wrapper_chev"></span>
         </div>
@@ -639,7 +651,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
       html += /*html*/ `
       <div
         class="cookiemunch_wrapper_dropdown cookiemunch_wrapper_required"
-        onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_required')"
+        data-cookiemunchdropdown="cookiemunch_wrapper_required"
         >
         <span>${plugin_settings.cookie_required}</span>
         <span class="cookiemunch_wrapper_chev"></span>
@@ -678,54 +690,58 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     if (cookies_object.length > 1) {
       if (required_cookies.length) {
         html += /*html*/ `
-        <button onclick="cookiemunch_decline()" id="cookiemunch_decline">
+        <button id="cookiemunch_decline">
           ${plugin_settings.cookie_button_required}
         </button>
-        <button onclick="cookiemunch_accept_selected()" id="cookiemunch_accept_selected" ${has_grouping ? '' : 'style="display: none;"'}>
+        <button id="cookiemunch_accept_selected" ${has_grouping ? '' : 'style="display: none;"'}>
           ${plugin_settings.cookie_button_selected}
         </button>
-        <button onclick="cookiemunch_dropdown('cookiemunch_wrapper','cookiemunch_wrapper_optional')" id="cookiemunch_accept_select"  ${has_grouping ? 'style="display: none;"' : ''}>
-          ${plugin_settings.cookie_button_select}
+        <button 
+         
+          data-cookiemunchdropdown="cookiemunch_wrapper_optional"
+          id="cookiemunch_accept_select"  
+          ${has_grouping ? 'style="display: none;"' : ''}>
+            ${plugin_settings.cookie_button_select}
         </button>
         `;
       } else {
         html += /*html*/ `
-        <button onclick="cookiemunch_decline()" id="cookiemunch_decline">
+        <button id="cookiemunch_decline">
           ${plugin_settings.cookie_button_none}
         </button>
-        <button onclick="cookiemunch_accept_selected()" id="cookiemunch_accept_selected">
+        <button id="cookiemunch_accept_selected">
           ${plugin_settings.cookie_button_selected}
         </button>
         `;
       }
       html += /*html*/ `
-      <button onclick="cookiemunch_accept_all()" id="cookiemunch_accept_all">
+      <button id="cookiemunch_accept_all">
         ${plugin_settings.cookie_button_all}
       </button>
       `;
     } else if (cookies_object.length === 1) {
       if (required_cookies.length) {
         html += /*html*/ `
-        <button class="width-half" onclick="cookiemunch_decline()" id="cookiemunch_decline">
+        <button class="width-half" id="cookiemunch_decline">
           ${plugin_settings.cookie_button_required}
         </button>
-        <button class="width-half" onclick="cookiemunch_accept_all()" id="cookiemunch_accept_all">
+        <button class="width-half" id="cookiemunch_accept_all">
           ${plugin_settings.cookie_button_all}
         </button>
         `;
       } else {
         html += /*html*/ `
-        <button class="width-half" onclick="cookiemunch_decline()" id="cookiemunch_decline">
+        <button class="width-half" id="cookiemunch_decline">
           ${plugin_settings.cookie_button_no}
         </button>
-        <button class="width-half" onclick="cookiemunch_accept_all()" id="cookiemunch_accept_all">
+        <button class="width-half" id="cookiemunch_accept_all">
           ${plugin_settings.cookie_button_yes}
         </button>
         `;
       }
     } else if (required_cookies.length) {
       html += /*html*/ `
-      <button class="width-full" onclick="cookiemunch_accept_all()" id="cookiemunch_accept_all">
+      <button class="width-full" id="cookiemunch_accept_all">
         ${plugin_settings.cookie_button_agree}
       </button>
       `;
@@ -733,6 +749,15 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     html += /*html*/ `</div>`;
     return html;
   };
+
+  // create cookiemunch -------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
+  // --------------------------------------------------------------------------------------------------------------------
 
   const create_cookiemunch = () => {
 
@@ -758,7 +783,7 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
       <div class="cookie_munch_svg">${cookie_svg}</div>
       <h1>${plugin_settings.cookie_title}</h1>
     </div>
-    <span onclick="cookiemunch_accept_selected()" style="display: none;" class="close_panel"></span>
+    <span style="display: none;" id="close_panel_btn" class="close_panel"></span>
     `;
     cookie_munch_el.innerHTML = html;
 
@@ -782,6 +807,35 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     if (checkCookie('cookiemunch_option_selected')) {
       slideUp(toggle_view_el, 0);
     }
+
+    let cookiemunch_dropdown_btns = document.querySelectorAll('[data-cookiemunchdropdown]');
+    [].forEach.call(cookiemunch_dropdown_btns, (cookiemunch_dropdown) => {
+      cookiemunch_dropdown.onclick = () => {
+        let dropdown = cookiemunch_dropdown.getAttribute('data-cookiemunchdropdown')
+        window.cookiemunch_dropdown(dropdown);
+      }
+    });
+
+    let cookiemunch_decline_btn = document.getElementById('cookiemunch_decline');
+    cookiemunch_decline_btn.onclick = () => {
+      window.cookiemunch_decline();
+    }
+
+    let cookiemunch_accept_selected_btn = document.getElementById('cookiemunch_accept_selected');
+    cookiemunch_accept_selected_btn.onclick = () => {
+      window.cookiemunch_accept_selected();
+    }
+
+    let close_panel_btn = document.getElementById('close_panel_btn');
+    close_panel_btn.onclick = () => {
+      window.cookiemunch_accept_selected();
+    }
+
+    let cookiemunch_accept_all_btn = document.getElementById('cookiemunch_accept_all');
+    cookiemunch_accept_all_btn.onclick = () => {
+      window.cookiemunch_accept_all();
+    }
+
     setTimeout(() => {
       cookie_munch_el.setAttribute("style", "transition: 0.3s ease-in-out; opacity:1;");
     }, duration);
@@ -838,9 +892,9 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
     if (!plugin_settings.start_dropdown_closed) {
       let first_group = get_grouping();
       if (!has_grouping) {
-        cookiemunch_dropdown('cookiemunch_wrapper', 'cookiemunch_wrapper_optional');
+        cookiemunch_dropdown('cookiemunch_wrapper_optional');
       } else {
-        cookiemunch_dropdown('cookiemunch_wrapper', `cookiemunch_wrapper_${first_group[0].replaceAll(/\s/g,'_')}_group`.toLowerCase());
+        cookiemunch_dropdown(`cookiemunch_wrapper_${first_group[0].replaceAll(/\s/g,'_')}_group`.toLowerCase());
       }
     }
   };
