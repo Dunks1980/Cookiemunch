@@ -63,7 +63,8 @@ function generate_parcel_scripts() {
       'parcel build '+src+'/images/cookiemunch_flat_light.svg -o /cookiemunch_flat_light.svg --no-content-hash --no-source-maps && ' +
       'parcel build '+src+'/scss/cookiemunch.scss -o /cookiemunch.min.css --no-content-hash --no-source-maps && ' +
       'parcel build '+src+'/scss/cookiemunch_flat_dark.scss -o /cookiemunch_flat_dark.min.css --no-content-hash --no-source-maps && ' +
-      'parcel build '+src+'/scss/cookiemunch_flat_light.scss -o /cookiemunch_flat_light.min.css --no-content-hash --no-source-maps';
+      'parcel build '+src+'/scss/cookiemunch_flat_light.scss -o /cookiemunch_flat_light.min.css --no-content-hash --no-source-maps && ' +
+      'parcel build src_element/cookie_munch_element.js -o /cookie_munch_element.min.js --no-source-maps --experimental-scope-hoisting';
   } else {
     src = 'src_custom';
     parcel_scripts =
