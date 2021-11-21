@@ -48,7 +48,7 @@ function renderComponent() {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      if (!oldValue && newValue && oldValue !== newValue) {
+      if (oldValue !== newValue) {
         //console.log(CustomElement_name + ', ' + name + ' attributes changed, from: ' + oldValue + ' to: ' + newValue);
         this.updateTemplateWithAttribute(name);
       }
@@ -56,6 +56,7 @@ function renderComponent() {
 
     connectedCallback() {
       this.templateAppended();
+      //console.log('connectedCallback');
     }
 
 
@@ -879,6 +880,7 @@ function renderComponent() {
       switch (name) {
         case 'css-file':
           this.setCSS(this.getAttribute('css-file'));
+          console.log(name);
           break;
       }
     }
