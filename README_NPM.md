@@ -10,123 +10,109 @@ If you wish to support this project please [buy me a coffee.](https://www.buymea
 ```javascript
 npm i @dunks1980/cookiemunch --save
 ```
+
 <br />
 
-Vue.js 3 example:
+As a custom element:
+
+Add the following element and script tag to the body of your web page.
+
+The custom element option is best for preventing CSS on the page interfering with Cookiemunch's CSS.
+
 ```html
-<template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <h1>{{ cookiemunch_message }}</h1>
-</template>
-    
-<script>
-import { cookiemunch } from "@dunks1980/cookiemunch";
-import svgimage from "@dunks1980/cookiemunch/cookiemunch.svg"; // optional
-import "@dunks1980/cookiemunch/cookiemunch.min.css";
-
-// Light & Dark themes: (replace css import)
-// @dunks1980/cookiemunch/cookiemunch_flat_light.min.css
-// @dunks1980/cookiemunch/cookiemunch_flat_dark.min.css
-
-export default {
-  name: "App",
-  data() {
-    return {
-      cookiemunch_options: {
-        settings: undefined,
-        cookies: undefined, 
-        required_cookies: undefined
-      },
-      cookiemunch_message: undefined,
-    };
-  },
-  mounted() {
-    let vm = this;
-
-    this.cookiemunch_options.settings = {
-      cookie_title: "Cookiemunch cookies",
-      cookie_image: svgimage,
-    };
-
-    this.cookiemunch_options.cookies = [
-      {
-        id: "gtm",
-        name: "Google tag manager",
-        used_for: "To collect analyitical data and monitor performance.",
-        url_text: "Privacy",
-        url: "https://policies.google.com/privacy",
-        accepted_function: () => {
-          // example google tag code
-          window.dataLayer = window.dataLayer || [];
-          window["ga-disable-YOUR-ID"] = false;
-          function gtag() {
-            window.dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
-          gtag("config", "YOUR-ID");
-          vm.cookiemunch_message =
-            "Accepted Google tag manager, function fires and 🍪 added!";
-        },
-        declined_function: () => {
-          window["ga-disable-YOUR-ID"] = true;
-          vm.cookiemunch_message =
-            "Declined Google tag manager, function fires and 🍪 removed!";
-        }
-      }
-    ];
-
-    this.cookiemunch_options.required_cookies = [
-      {
-        name: "Cloudflare",
-        used_for: "Cookie is set by Cloudflare to speed up their load times...",
-        url_text: "Privacy policy",
-        url: "https://www.cloudflare.com/en-gb/privacypolicy/",
-      },
-    ];
-
-    cookiemunch(this.cookiemunch_options);
-  }
-}
-</script>
+<cookie-munch css-file="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.css"></cookie-munch>
+<script src="https://unpkg.com/@dunks1980/cookiemunch/cookie_munch_element.min.js"></script>
 ```
-<br />
+
 <br />
 
-Or can be used without package manager: 
+Without package manager: 
+
+Add the following script and style tags inside the head of your web page.
+
 ```html
 <script src="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.css">
-
-<!-- Light & Darks themes (replace href above) -->
-<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_light.min.css -->
-<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css -->
 ```
-example:
-```javascript
-var options = {
+
+<br />
+
+Optional themes: 
+```html
+<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_light.min.css -->
+<!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css --> 
+```
+
+
+
+<br />
+
+Boilderplate settings:
+
+This code should run after Cookiemunch scripts have loaded.
+
+Settings are optional, tweak to your needs.
+
+```html
+<script>
+cookiemunch_options = {
   settings: {
-    cookie_title: 'My site cookies'
+    reload: false,
+    required: false,
+    hide_icon: false,
+    cookies_to_exclude: [],
+    keep_all_cookies: false,
+    first_visit_checked: false,
+    start_dropdown_closed: false,
+    check_switch_icons: false,
+    cookies_duration: 365,
+    cookies_secure: false,
+    cookie_image: 'https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.svg',
+    cookie_title: 'Cookies settings',
+    cookie_optional: 'Optional',
+    cookie_required: 'Required',
+    cookie_accept_label: 'Allow Cookies:',
+    cookie_required_label: 'These Cookies are required in order for the site to function.',
+    cookie_button_none: 'None',
+    cookie_button_required: 'Required',
+    cookie_button_select: 'Select',
+    cookie_button_selected: 'Selected',
+    cookie_button_all: 'All',
+    cookie_button_no: 'No',
+    cookie_button_yes: 'Yes',
+    cookie_button_agree: 'Close'
   },
   cookies: [
     {
-      id: "unique_name_id_cookie_object",
-      name: "example tag manager",
-      used_for: "To collect analyitical data and monitor performance.",
-      url_text: "Privacy",
-      url: "https://google.com",
-      accepted_function: add_example_script,
-      declined_function: remove_example_script
+      id: 'Optional Example',
+      group: '',
+      name: 'Optional Example',
+      used_for: 'Description or what this cookie is for.',
+      url_text: 'Read more',
+      url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies',
+      accepted_function: accepted_function,
+      declined_function: declined_function
+    }
+  ],
+  required_cookies: [
+    {
+      name: 'Essential cookies',
+      used_for: 'these are cookies that are either: used solely to carry out or facilitate the transmission of communications over a network; or. strictly necessary to provide an online service (e.g. our website or a service on our website) which you have requested.',
+      url_text: 'Read more',
+      url: 'https://gdprprivacypolicy.org/cookies-policy/'
     }
   ]
 };
 
-cookiemunch(options);
+function accepted_function() {
+  console.log("accepted_function");
+}
 
-function add_example_script() {
-  console.log("add_example_script fired!!!");
+function declined_function() {
+  console.log("declined_function");
 }
-function remove_example_script() {
-  console.log("remove_example_script fired!!!");
-}
+
+// loads Cookiemunch with the above settings
+cookiemunch(cookiemunch_options);
+</script>
 ```
-
