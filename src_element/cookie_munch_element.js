@@ -872,13 +872,8 @@ function renderComponent() {
         startup();
       };
 
-      if (typeof exports != "undefined") {
-        exports.cookiemunch = cookiemunch_function;
-        window.cookiemunch = cookiemunch_function;
-      } else {
-        window.cookiemunch = cookiemunch_function;
-      }
-
+      window.cookiemunch = cookiemunch_function;
+      
     }
 
     // Specify observed attributes for attributeChangedCallback
