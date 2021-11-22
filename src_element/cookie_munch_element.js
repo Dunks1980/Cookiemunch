@@ -885,7 +885,7 @@ function renderComponent() {
       switch (name) {
         case 'css-file':
           this.setCSS(this.getAttribute('css-file'));
-          console.log(name);
+          //console.log(name);
           break;
       }
     }
