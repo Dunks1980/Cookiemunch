@@ -20,15 +20,14 @@ function renderComponent() {
       CM.appendChild(template.content.cloneNode(true));
       var style = document.createElement('style');
       CM.appendChild(style);
-      CM.cookiemunch_css_file_location = '';
+      CM.cookiemunch_loaded = false;
     }
 
     setCSS(fileLocation) {
       var CM = this.shadowRoot;
-      if (CM.cookiemunch_css_file_location === fileLocation) {
+      if (!CM.cookiemunch_loaded) {
         return false;
       }
-      CM.cookiemunch_css_file_location = fileLocation;
       var style = CM.querySelector('style');
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
@@ -781,6 +780,7 @@ function renderComponent() {
           }
 
           //console.log(CM_this)
+          CM.cookiemunch_loaded = true;
           CM_this.updateTemplateWithAttribute('css-file');
 
         };
