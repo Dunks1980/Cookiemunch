@@ -2,6 +2,8 @@
 
 var CustomElement_name = 'cookie-munch';
 
+
+
 renderComponent();
 
 function renderComponent() {
@@ -14,17 +16,19 @@ function renderComponent() {
         mode: 'open'
       });
       var CM = this.shadowRoot;
-
       var template = document.createElement('template');
       CM.appendChild(template.content.cloneNode(true));
-
       var style = document.createElement('style');
       CM.appendChild(style);
-
+      CM.cookiemunch_css_file_location = '';
     }
 
     setCSS(fileLocation) {
       var CM = this.shadowRoot;
+      if (CM.cookiemunch_css_file_location === fileLocation) {
+        return false;
+      }
+      CM.cookiemunch_css_file_location = fileLocation;
       var style = CM.querySelector('style');
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
@@ -62,6 +66,7 @@ function renderComponent() {
 
 
     templateAppended() {
+      var CM_this = this;
       var CM = this.shadowRoot;
 
       var cookiemunch_function = function cookiemunch_function(options_passed, block_functions, callback) {
@@ -692,7 +697,9 @@ function renderComponent() {
           var cookie_munch_el = document.createElement('div');
           cookie_munch_el.style.display = 'none';
           cookie_munch_el.style.transition = '0.3s ease-in-out';
+
           cookie_munch_el.style.opacity = '0';
+
           cookie_munch_el.setAttribute("id", "cookie_munch_element");
 
 
@@ -772,6 +779,10 @@ function renderComponent() {
               window.cookiemunch_accept_all();
             };
           }
+
+          //console.log(CM_this)
+          CM_this.updateTemplateWithAttribute('css-file');
+
         };
 
         // set checked if cookies
@@ -868,7 +879,6 @@ function renderComponent() {
             cookiemunch_load_plugin();
           }, 0);
         };
-
         startup();
       };
 
