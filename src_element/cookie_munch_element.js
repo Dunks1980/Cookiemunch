@@ -670,7 +670,7 @@ function renderComponent() {
             html += '<button id="cookiemunch_accept_all">' + plugin_settings.cookie_button_all + '</button>';
           } else if (cookies_object.length === 1) {
             if (required_cookies.length) {
-              html += '<button class="width-half" id="cookiemunch_decline"' + plugin_settings.cookie_button_required + '</button><button class="width-half" id="cookiemunch_accept_all">' + plugin_settings.cookie_button_all + '</button>';
+              html += '<button class="width-half" id="cookiemunch_decline">' + plugin_settings.cookie_button_required + '</button><button class="width-half" id="cookiemunch_accept_all">' + plugin_settings.cookie_button_all + '</button>';
             } else {
               html += '<button class="width-half" id="cookiemunch_decline">' + plugin_settings.cookie_button_no + '</button><button class="width-half" id="cookiemunch_accept_all">' + plugin_settings.cookie_button_yes + '</button>';
             }
