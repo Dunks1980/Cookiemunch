@@ -117,7 +117,18 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
         el.checked = false;
       }
       if (!plugin_settings.reload) {
-        cookies_object[i].declined_function();
+        try {
+          var declined_function_func;
+          if (typeof cookies_object[i].declined_function === 'function') {
+            declined_function_func = cookies_object[i].declined_function;
+          } else if (typeof cookies_object[i].declined_function === 'string') {
+            declined_function_func = new Function(cookies_object[i].declined_function);
+          }
+          declined_function_func();
+        } catch (err) {
+          console.log('cookiemunch declined_function error for id: ' + cookies_object[i].id);
+          console.log(err.message);
+        }
       }
     }
   };
@@ -187,12 +198,34 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
       if (el && el.checked) {
         setCookie(check_this_cookie, true, plugin_settings.cookies_duration, plugin_settings.cookies_secure);
         if (!plugin_settings.reload) {
-          cookies_object[i].accepted_function();
+          try {
+            var accepted_function_func;
+            if (typeof cookies_object[i].accepted_function === 'function') {
+              accepted_function_func = cookies_object[i].accepted_function;
+            } else if (typeof cookies_object[i].accepted_function === 'string') {
+              accepted_function_func = new Function(cookies_object[i].accepted_function);
+            }
+            accepted_function_func();
+          } catch (err) {
+            console.log('cookiemunch accepted_function error for id: ' + cookies_object[i].id);
+            console.log(err.message);
+          }
         }
       } else {
         deleteCookie(check_this_cookie);
         if (!plugin_settings.reload) {
-          cookies_object[i].declined_function();
+          try {
+            var declined_function_func;
+            if (typeof cookies_object[i].declined_function === 'function') {
+              declined_function_func = cookies_object[i].declined_function;
+            } else if (typeof cookies_object[i].declined_function === 'string') {
+              declined_function_func = new Function(cookies_object[i].declined_function);
+            }
+            declined_function_func();
+          } catch (err) {
+            console.log('cookiemunch declined_function error for id: ' + cookies_object[i].id);
+            console.log(err.message);
+          }
         }
       }
     }
@@ -876,9 +909,31 @@ const cookiemunch_function = (options_passed, block_functions, callback) => {
         for (i = 0; i < cookies_object.length; i++) {
           check_this_cookie = 'cookiemunch_' + cookies_object[i].id;
           if (checkCookie(check_this_cookie)) {
-            cookies_object[i].accepted_function();
+            try {
+              var accepted_function_func;
+              if (typeof cookies_object[i].accepted_function === 'function') {
+                accepted_function_func = cookies_object[i].accepted_function;
+              } else if (typeof cookies_object[i].accepted_function === 'string') {
+                accepted_function_func = new Function(cookies_object[i].accepted_function);
+              }
+              accepted_function_func();
+            } catch (err) {
+              console.log('cookiemunch accepted_function error for id: ' + cookies_object[i].id);
+              console.log(err.message);
+            }
           } else {
-            cookies_object[i].declined_function();
+            try {
+              var declined_function_func;
+              if (typeof cookies_object[i].declined_function === 'function') {
+                declined_function_func = cookies_object[i].declined_function;
+              } else if (typeof cookies_object[i].declined_function === 'string') {
+                declined_function_func = new Function(cookies_object[i].declined_function);
+              }
+              declined_function_func();
+            } catch (err) {
+              console.log('cookiemunch declined_function error for id: ' + cookies_object[i].id);
+              console.log(err.message);
+            }
           }
         }
       }

@@ -23,8 +23,8 @@ var cookiemunch_options = {
       used_for: "Some description of what the cookie is used for.",
       url_text: "Privacy & Terms",
       url: "https://dunks1980.com/",
-      accepted_function: some_tracker,
-      declined_function: some_tracker_off
+      accepted_function: "console.log('tracker1 accepted_function')",
+      declined_function: "console.log('tracker1 declined_function')"
     },
     {
       id: "tracker2",
